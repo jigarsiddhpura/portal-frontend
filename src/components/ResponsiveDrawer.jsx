@@ -6,7 +6,6 @@ import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
@@ -21,6 +20,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Checkbox from "@mui/material/Checkbox";
 import ListItem from "@mui/material/ListItem";
+import List from '@mui/material/List';
 
 const drawerWidth = 240;
 
@@ -84,23 +84,26 @@ export default function ResponsiveDrawer() {
   };
 
   // openList is respect to lists inside drawer
-  const [openList, setOpenList] = React.useState(false);
+  const [openList, setOpenList] = React.useState([false, false, false, false]);
 
-  const handleClickList = () => {
-    setOpenList(!openList);
-  };
+    const handleClickList = (index) => {
+      const copyList = [...openList]
+      copyList[index] = !copyList[index]
+      setOpenList(copyList);
+    };
 
-  const [checked, setChecked] = React.useState([]);
+  const [checked, setChecked] = React.useState([[],[],[],[]]);
 
-  const handleToggle = (value) => () => {
-    console.log(`Checkbox clicked for index ${value}`)
-    const currentIndex = checked.indexOf(value);
+  const handleToggle = (listIndex,value) => () => {
+    console.log(`Checkbox clicked for listIndex ${listIndex} - value ${value}`);
+    const currentIndex = checked[listIndex].includes(value);
     const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
+    
+    if (currentIndex === false) {
+      newChecked[listIndex].push(value);
     } else {
-      newChecked.splice(currentIndex, 1);
+      const indexToRemove = newChecked[listIndex].indexOf(value);
+      newChecked[listIndex].splice(indexToRemove, 1);
     }
 
     setChecked(newChecked);
@@ -130,6 +133,63 @@ export default function ResponsiveDrawer() {
     "10,000 - 15,000",
     "15,000 or above",
   ];
+
+
+  const NestedList = ({ SidebarList , listIndex , Listname}) => {
+    // console.log(`list name = ${Listname}`);
+    return (
+      <>
+        {/* <p>{` List is ${SidebarList}, ${listIndex}, ${Listname} `}</p> */}
+        <List
+        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        >
+        <ListItemButton onClick={() => handleClickList(listIndex)}>
+          <ListItemText primary={Listname} />
+          {openList[listIndex] ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openList[listIndex]} timeout="auto" unmountOnExit>
+          <List
+            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+          >
+              {SidebarList.map((type, value) => {
+              const labelId = `checkbox-list-label-${value}`;
+              
+              // this return is of Nested list
+              return (
+                <ListItem
+                key={value}
+                secondaryAction={
+                  <IconButton edge="end" aria-label="comments"></IconButton>
+                }
+                disablePadding
+              >
+                <ListItemButton
+                  role={undefined}
+                  onClick={handleToggle(listIndex,value)}
+                  dense
+                >
+                  <ListItemIcon>
+                    <Checkbox
+                      edge="start"
+                      checked={checked[listIndex].includes(value) === true}
+                      tabIndex={-1}
+                      disableRipple
+                      inputProps={{ "aria-labelledby": labelId }}
+                    />
+                  </ListItemIcon>
+                  <ListItemText id={labelId} primary={`${type}`} />
+                </ListItemButton>
+              </ListItem>
+              );
+            })}
+          </List>
+        </Collapse>
+      </List>
+      </>
+    )
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -174,59 +234,15 @@ export default function ResponsiveDrawer() {
         </DrawerHeader>
         <Divider />
 
-        <List
-          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-          component="nav"
-          aria-labelledby="nested-list-subheader"
-        >
-          <ListItemButton onClick={handleClickList}>
-            <ListItemText primary="Internship type" />
-            {openList ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={openList} timeout="auto" unmountOnExit>
-            <List
-              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-            >
-              {InternshipTypes.map((type, value) => {
-                const labelId = `checkbox-list-label-${value}`;
+        {<NestedList SidebarList={InternshipTypes} listIndex={0} Listname="Internship Type"/>}
+        {<NestedList SidebarList={Category} listIndex={1} Listname="Category"/>}
+        {<NestedList SidebarList={Experience} listIndex={2} Listname="Experience"/>}
+        {<NestedList SidebarList={StipendRange} listIndex={3} Listname="Stipend Range"/>}
 
-                // this return is of Nested list
-                return (
-                  <ListItem
-                    key={value}
-                    secondaryAction={
-                      <IconButton edge="end" aria-label="comments"></IconButton>
-                    }
-                    disablePadding
-                  >
-                    <ListItemButton
-                      role={undefined}
-                      onClick={
-                        handleToggle(value)
-                      }
-                      dense
-                    >
-                      <ListItemIcon>
-                        <Checkbox
-                          edge="start"
-                          checked={checked.indexOf(value) !== -1}
-                          tabIndex={-1}
-                          disableRipple
-                          inputProps={{ "aria-labelledby": labelId }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText id={labelId} primary={`${type}`} />
-                    </ListItemButton>
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Collapse>
-        </List>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-      </Main>
+      </Main> 
     </Box>
   );
 }
