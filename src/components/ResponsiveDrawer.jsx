@@ -73,7 +73,7 @@ export default function ResponsiveDrawer() {
   const theme = useTheme();
 
   // open, setOpen is respect to the drawer not List
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -83,13 +83,14 @@ export default function ResponsiveDrawer() {
     setOpen(false);
   };
 
-  const [openList, setOpenList] = React.useState(true);
+  // openList is respect to lists inside drawer
+  const [openList, setOpenList] = React.useState(false);
 
   const handleClickList = () => {
     setOpenList(!openList);
   };
 
-  const [checked, setChecked] = React.useState([0,0,0,0]);
+  const [checked, setChecked] = React.useState([]);
 
   const handleToggle = (value) => () => {
     console.log(`Checkbox clicked for index ${value}`)
@@ -188,7 +189,6 @@ export default function ResponsiveDrawer() {
             >
               {InternshipTypes.map((type, value) => {
                 const labelId = `checkbox-list-label-${value}`;
-                console.log(labelId);
 
                 // this return is of Nested list
                 return (
