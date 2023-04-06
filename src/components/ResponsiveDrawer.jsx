@@ -20,7 +20,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Checkbox from "@mui/material/Checkbox";
 import ListItem from "@mui/material/ListItem";
-import List from '@mui/material/List';
+import List from "@mui/material/List";
 
 const drawerWidth = 240;
 
@@ -51,10 +51,11 @@ const AppBar = styled(MuiAppBar, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
+    // width: `calc(10% - ${drawerWidth}px)`,
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
     transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
+      easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
@@ -86,19 +87,19 @@ export default function ResponsiveDrawer() {
   // openList is respect to lists inside drawer
   const [openList, setOpenList] = React.useState([false, false, false, false]);
 
-    const handleClickList = (index) => {
-      const copyList = [...openList]
-      copyList[index] = !copyList[index]
-      setOpenList(copyList);
-    };
+  const handleClickList = (index) => {
+    const copyList = [...openList];
+    copyList[index] = !copyList[index];
+    setOpenList(copyList);
+  };
 
-  const [checked, setChecked] = React.useState([[],[],[],[]]);
+  const [checked, setChecked] = React.useState([[], [], [], []]);
 
-  const handleToggle = (listIndex,value) => () => {
+  const handleToggle = (listIndex, value) => () => {
     console.log(`Checkbox clicked for listIndex ${listIndex} - value ${value}`);
     const currentIndex = checked[listIndex].includes(value);
     const newChecked = [...checked];
-    
+
     if (currentIndex === false) {
       newChecked[listIndex].push(value);
     } else {
@@ -134,79 +135,98 @@ export default function ResponsiveDrawer() {
     "15,000 or above",
   ];
 
-
-  const NestedList = ({ SidebarList , listIndex , Listname}) => {
+  const NestedList = ({ SidebarList, listIndex, Listname }) => {
     // console.log(`list name = ${Listname}`);
     return (
       <>
         {/* <p>{` List is ${SidebarList}, ${listIndex}, ${Listname} `}</p> */}
         <List
-        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
+          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
         >
-        <ListItemButton onClick={() => handleClickList(listIndex)}>
-          <ListItemText primary={Listname} />
-          {openList[listIndex] ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={openList[listIndex]} timeout="auto" unmountOnExit>
-          <List
-            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-          >
+          <ListItemButton onClick={() => handleClickList(listIndex)}>
+            <ListItemText primary={Listname} />
+            {openList[listIndex] ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={openList[listIndex]} timeout="auto" unmountOnExit>
+            <List
+              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+            >
               {SidebarList.map((type, value) => {
-              const labelId = `checkbox-list-label-${value}`;
-              
-              // this return is of Nested list
-              return (
-                <ListItem
-                key={value}
-                secondaryAction={
-                  <IconButton edge="end" aria-label="comments"></IconButton>
-                }
-                disablePadding
-              >
-                <ListItemButton
-                  role={undefined}
-                  onClick={handleToggle(listIndex,value)}
-                  dense
-                >
-                  <ListItemIcon>
-                    <Checkbox
-                      edge="start"
-                      checked={checked[listIndex].includes(value) === true}
-                      tabIndex={-1}
-                      disableRipple
-                      inputProps={{ "aria-labelledby": labelId }}
-                    />
-                  </ListItemIcon>
-                  <ListItemText id={labelId} primary={`${type}`} />
-                </ListItemButton>
-              </ListItem>
-              );
-            })}
-          </List>
-        </Collapse>
-      </List>
+                const labelId = `checkbox-list-label-${value}`;
+
+                // this return is of Nested list
+                return (
+                  <ListItem
+                    key={value}
+                    secondaryAction={
+                      <IconButton edge="end" aria-label="comments"></IconButton>
+                    }
+                    disablePadding
+                  >
+                    <ListItemButton
+                      role={undefined}
+                      onClick={handleToggle(listIndex, value)}
+                      dense
+                    >
+                      <ListItemIcon>
+                        <Checkbox
+                          edge="start"
+                          checked={checked[listIndex].includes(value) === true}
+                          tabIndex={-1}
+                          disableRipple
+                          inputProps={{ "aria-labelledby": labelId }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText id={labelId} primary={`${type}`} />
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
+            </List>
+          </Collapse>
+        </List>
       </>
-    )
+    );
   };
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar
+        position="fixed"
+        open={open}
+        style={{
+          //  border: "2px solid black",
+            backgroundColor: "white" ,
+            boxShadow:'none'
+          }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
+            sx={{ mr: 2, ...(open && { display: "none" }), color: "black" }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Courses
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            style={{
+              fontFamily: "Arya",
+              fontStyle: "normal",
+              fontWeight: "700",
+              fontSize: "1.5rem",
+              lineHeight: "58px",
+              color: "black",
+            }}
+          >
+            All Courses
           </Typography>
         </Toolbar>
       </AppBar>
@@ -234,15 +254,38 @@ export default function ResponsiveDrawer() {
         </DrawerHeader>
         <Divider />
 
-        {<NestedList SidebarList={InternshipTypes} listIndex={0} Listname="Internship Type"/>}
-        {<NestedList SidebarList={Category} listIndex={1} Listname="Category"/>}
-        {<NestedList SidebarList={Experience} listIndex={2} Listname="Experience"/>}
-        {<NestedList SidebarList={StipendRange} listIndex={3} Listname="Stipend Range"/>}
-
+        {
+          <NestedList
+            SidebarList={InternshipTypes}
+            listIndex={0}
+            Listname="Internship Type"
+          />
+        }
+        {
+          <NestedList
+            SidebarList={Category}
+            listIndex={1}
+            Listname="Category"
+          />
+        }
+        {
+          <NestedList
+            SidebarList={Experience}
+            listIndex={2}
+            Listname="Experience"
+          />
+        }
+        {
+          <NestedList
+            SidebarList={StipendRange}
+            listIndex={3}
+            Listname="Stipend Range"
+          />
+        }
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-      </Main> 
+      </Main>
     </Box>
   );
 }
