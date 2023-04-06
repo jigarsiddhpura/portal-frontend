@@ -210,9 +210,7 @@ const Login = () => {
               ) : null}
 
               <div style={{ display: "flex" }}>
-                {/* <Link to="/password-reset"> */}
                 <SignupButton type="submit">Log in</SignupButton>
-                {/* </Link> */}
               </div>
 
               <div style={{ }}>

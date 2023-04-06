@@ -174,8 +174,8 @@ const Signup = () => {
               <h2 style={{ margin: "0.4rem 0" , color:'#4A2145'}}>Create new account</h2>
               <span style={{ color: "gray", margin: "0.4rem 0" }}>
                 Already A Member?{" "}
-                <Link to="/" style={{textDecoration: "none",}}>
-                  <a href="/" style={{ textDecoration: "none", color: '#4A2145', fontWeight:500 }}>
+                <Link to="/Login" style={{textDecoration: "none",}}>
+                  <a href="/Login" style={{ textDecoration: "none", color: '#4A2145', fontWeight:500 }}>
                     Log in
                   </a>{" "}
                 </Link>
