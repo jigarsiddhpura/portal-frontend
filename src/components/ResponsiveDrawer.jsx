@@ -179,7 +179,8 @@ export default function ResponsiveDrawer() {
                           inputProps={{ "aria-labelledby": labelId }}
                         />
                       </ListItemIcon>
-                      <ListItemText id={labelId} primary={`${type}`} />
+                      <ListItemText id={labelId} primary={`${type}`} 
+                      />
                     </ListItemButton>
                   </ListItem>
                 );
