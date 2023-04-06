@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from './components/Signup';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
+import Courses from './components/Courses';
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
           </Route>
           <Route path="/Login" element={<Login/>}>
           </Route>
-          <Route path="/" element={<ResponsiveDrawer/>}>
+          <Route path="/" element={<Courses/>}>
           </Route>
+
 
         </Routes>
       
