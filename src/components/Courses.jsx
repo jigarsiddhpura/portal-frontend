@@ -23,7 +23,6 @@ const Courses = () => {
   var [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
   window.onstorage = () => {
-    console.log(JSON.parse(window.localStorage.getItem("drawerOpen")));
     setIsDrawerOpen(JSON.parse(window.localStorage.getItem("drawerOpen")));
   };
   
