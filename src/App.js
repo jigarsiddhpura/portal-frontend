@@ -18,6 +18,8 @@ function App() {
           </Route>
           <Route path="/Login" element={<Login/>}>
           </Route>
+          <Route path="/drawer" element={<ResponsiveDrawer/>}>
+          </Route>
           <Route path="/" element={<Courses/>}>
           </Route>
 

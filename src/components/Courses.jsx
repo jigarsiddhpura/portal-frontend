@@ -8,18 +8,33 @@ import courseImg from "../images/courseImg.png";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import AccessTimeFilledOutlinedIcon from '@mui/icons-material/AccessTimeFilledOutlined';
-import StarHalfIcon from '@mui/icons-material/StarHalf';
+import AccessTimeFilledOutlinedIcon from "@mui/icons-material/AccessTimeFilledOutlined";
+import StarHalfIcon from "@mui/icons-material/StarHalf";
 import * as React from "react";
 import { Paper } from "@mui/material";
-import star from '../images/star.png'
-import time from '../images/time.png'
+import star from "../images/star.png";
+import time from "../images/time.png";
+import Footer from "./Footer";
+import { useEffect, useState } from "react";
 
 const Courses = () => {
+
+  // checking local Storage after each update
+  var [isDrawerOpen, setIsDrawerOpen] = useState(true);
+
+  window.onstorage = () => {
+    console.log(JSON.parse(window.localStorage.getItem("drawerOpen")));
+    setIsDrawerOpen(JSON.parse(window.localStorage.getItem("drawerOpen")));
+  };
+  
+
   return (
     <>
       <ResponsiveDrawer />
-      <div className="container" style={{ marginLeft: "245px" }}>
+      <div
+        className="container"
+        style={{ marginLeft:  isDrawerOpen ? '245px' : '10px' }}
+      >
         <Card
           sx={{
             padding: "1rem",
@@ -57,9 +72,7 @@ const Courses = () => {
               >
                 Web Design
               </button>
-              <span style={{ textAlign:'right' }}>
-                Harvard University
-              </span>
+              <span style={{ textAlign: "right" }}>Harvard University</span>
             </div>
 
             <Typography
@@ -68,7 +81,7 @@ const Courses = () => {
                 fontStyle: "normal",
                 fontWeight: "600",
                 fontSize: "1.2rem",
-                textAlign:'start'
+                textAlign: "start",
                 // float:'left'
                 // lineHeight: "1rem",
               }}
@@ -80,25 +93,32 @@ const Courses = () => {
                 display: "flex",
                 alignItems: "center",
                 margin: "1rem 0",
-              }}>
-                <img src={star} alt="star" style={{width:'1.3rem', height:'1.3rem'}}/>
-                <span style={{margin:'0 20px 0 4px'}}>4.5</span>
-                <img src={time} alt="time" style={{width:'1.3rem', height:'1.3rem'}}/>
-                <span style={{margin:'0 20px 0 4px'}}>3 months</span>
-                <Button 
+              }}
+            >
+              <img
+                src={star}
+                alt="star"
+                style={{ width: "1.3rem", height: "1.3rem" }}
+              />
+              <span style={{ margin: "0 20px 0 4px" }}>4.5</span>
+              <img
+                src={time}
+                alt="time"
+                style={{ width: "1.3rem", height: "1.3rem" }}
+              />
+              <span style={{ margin: "0 20px 0 4px" }}>3 months</span>
+              <Button
                 style={{
-                    borderRadius:'4px',
-                    backgroundColor:'#85D1A0',
-                    color:'white',
-                    // marginLeft:'1.5rem'
+                  borderRadius: "4px",
+                  backgroundColor: "#85D1A0",
+                  color: "white",
+                  // marginLeft:'1.5rem'
                 }}
-                >Interested</Button>
+              >
+                Interested
+              </Button>
             </div>
           </CardContent>
-          {/* <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
-          </CardActions> */}
         </Card>
       </div>
     </>

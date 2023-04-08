@@ -21,13 +21,14 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Checkbox from "@mui/material/Checkbox";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
+// import './ResponsiveDrawer.css'
 
-const drawerWidth = 240;
+var drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    padding:0,
+    padding: 0,
     // padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
@@ -39,8 +40,8 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      margin:'0 0 6px 0',
-      padding:0,
+      margin: "0 0 6px 0",
+      padding: 0,
     }),
   })
 );
@@ -85,6 +86,11 @@ export default function ResponsiveDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  React.useEffect(() => {
+    window.localStorage.setItem('drawerOpen',JSON.stringify(open));
+    window.dispatchEvent(new Event("storage"));
+  })
 
   // openList is respect to lists inside drawer
   const [openList, setOpenList] = React.useState([false, false, false, false]);
@@ -181,8 +187,7 @@ export default function ResponsiveDrawer() {
                           inputProps={{ "aria-labelledby": labelId }}
                         />
                       </ListItemIcon>
-                      <ListItemText id={labelId} primary={`${type}`} 
-                      />
+                      <ListItemText id={labelId} primary={`${type}`} />
                     </ListItemButton>
                   </ListItem>
                 );
@@ -195,99 +200,105 @@ export default function ResponsiveDrawer() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        open={open}
-        style={{
-            backgroundColor: "white" ,
-            boxShadow:'none',
-          }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }), color: "black" }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            style={{
-              fontFamily: "Arya",
-              fontStyle: "normal",
-              fontWeight: "700",
-              fontSize: "1.5rem",
-              lineHeight: "58px",
-              color: "black",
-            }}
-          >
-            All Courses
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
+    <>
+          <Box sx={{ display: "flex" }}>
+            <CssBaseline />
+            <AppBar
+              position="fixed"
+              open={open}
+              style={{
+                backgroundColor: "white",
+                boxShadow: "none",
+              }}
+            >
+              <Toolbar>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={handleDrawerOpen}
+                  edge="start"
+                  sx={{
+                    mr: 2,
+                    ...(open && { display: "none" }),
+                    color: "black",
+                  }}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  style={{
+                    fontFamily: "Arya",
+                    fontStyle: "normal",
+                    fontWeight: "700",
+                    fontSize: "1.5rem",
+                    lineHeight: "58px",
+                    color: "black",
+                  }}
+                >
+                  All Courses
+                </Typography>
+              </Toolbar>
+            </AppBar>
+            <Drawer
+              sx={{
+                width: drawerWidth,
+                flexShrink: 0,
+                "& .MuiDrawer-paper": {
+                  width: drawerWidth,
+                  boxSizing: "border-box",
+                },
+              }}
+              variant="persistent"
+              anchor="left"
+              open={open}
+            >
+              <DrawerHeader>
+                <IconButton onClick={handleDrawerClose}>
+                  {theme.direction === "ltr" ? (
+                    <ChevronLeftIcon />
+                  ) : (
+                    <ChevronRightIcon />
+                  )}
+                </IconButton>
+              </DrawerHeader>
+              <Divider />
 
-        {
-          <NestedList
-            SidebarList={InternshipTypes}
-            listIndex={0}
-            Listname="Internship Type"
-          />
-        }
-        {
-          <NestedList
-            SidebarList={Category}
-            listIndex={1}
-            Listname="Category"
-          />
-        }
-        {
-          <NestedList
-            SidebarList={Experience}
-            listIndex={2}
-            Listname="Experience"
-          />
-        }
-        {
-          <NestedList
-            SidebarList={StipendRange}
-            listIndex={3}
-            Listname="Stipend Range"
-          />
-        }
-      </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
-      </Main>
-    </Box>
+              {
+                <NestedList
+                  SidebarList={InternshipTypes}
+                  listIndex={0}
+                  Listname="Internship Type"
+                />
+              }
+              {
+                <NestedList
+                  SidebarList={Category}
+                  listIndex={1}
+                  Listname="Category"
+                />
+              }
+              {
+                <NestedList
+                  SidebarList={Experience}
+                  listIndex={2}
+                  Listname="Experience"
+                />
+              }
+              {
+                <NestedList
+                  SidebarList={StipendRange}
+                  listIndex={3}
+                  Listname="Stipend Range"
+                />
+              }
+            </Drawer>
+            <Main open={open}>
+              <DrawerHeader />
+            </Main>
+          </Box>
+    </>
   );
 }
