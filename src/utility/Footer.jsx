@@ -4,6 +4,7 @@ import React from "react";
 const Footer = () => {
     return ( 
         <>
+        <hr/>
     <footer class="site-footer">
       <div class="container">
         <div class="row">

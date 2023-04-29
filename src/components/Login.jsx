@@ -21,7 +21,6 @@ import "./Login.css";
 import undrawImg from "../images/undraw_Welcome_.png";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import Footer from "./Footer";
 
 const validationSchema = yup.object({
   email: yup

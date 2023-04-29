@@ -1,4 +1,4 @@
-import ResponsiveDrawer from "./ResponsiveDrawer";
+import ResponsiveDrawer from "../utility/ResponsiveDrawer";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -14,25 +14,23 @@ import * as React from "react";
 import { Paper } from "@mui/material";
 import star from "../images/star.png";
 import time from "../images/time.png";
-import Footer from "./Footer";
+import Footer from "../utility/Footer";
 import { useEffect, useState } from "react";
 
 const Courses = () => {
-
   // checking local Storage after each update
   var [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
   window.onstorage = () => {
     setIsDrawerOpen(JSON.parse(window.localStorage.getItem("drawerOpen")));
   };
-  
 
   return (
     <>
       <ResponsiveDrawer />
       <div
         className="container"
-        style={{ marginLeft:  isDrawerOpen ? '245px' : '10px' }}
+        style={{ marginLeft: isDrawerOpen ? "245px" : "10px" }}
       >
         <Card
           sx={{
@@ -120,6 +118,7 @@ const Courses = () => {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </>
   );
 };
