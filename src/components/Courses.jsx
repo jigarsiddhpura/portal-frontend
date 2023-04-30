@@ -67,7 +67,7 @@ const Courses = () => {
                   border: "none",
                 }}
               >
-                Web Design
+                Web 
               </button>
               <span style={{ textAlign: "right" }}>Harvard University</span>
             </div>
