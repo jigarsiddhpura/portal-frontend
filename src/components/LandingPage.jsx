@@ -12,22 +12,12 @@ import frame8 from "../images/frame8.svg"
 import frame9 from "../images/frame9.svg"
 import frame10 from "../images/frame10.svg"
 import frame11 from "../images/frame11.svg"
+import NavBar from "../utility/NavBar";
 
 const LandingPage = () => {
   return (
     <div className="landing-page">
-      <nav className="rectangle-parent">
-        <div className="group-child" />
-        <div className="home">{`Home `}</div>
-        <div className="courses">Courses</div>
-        <div className="research">Research</div>
-        <div className="interview">Interview</div>
-        <div className="log-in">Log in</div>
-        <button className="rectangle-group">
-          <div className="group-item" />
-          <div className="registration">Registration</div>
-        </button>
-      </nav>
+    <NavBar />
       <div className="landing-page-inner">
         <div className="frame-child" />
       </div>
