@@ -10,6 +10,7 @@ import PostInternship from './components/PostInternship';
 import NavBar from './utility/NavBar';
 import Footer from './utility/Footer';
 import ResearchPaper from './components/ResearchPaper';
+import Header from './utility/Header';
 
 function App() {
   return (
@@ -23,13 +24,16 @@ function App() {
           </Route>
           <Route path="/Login" element={<Login/>}>
           </Route>
-          <Route path="/" element={<> <Courses/> <Footer/> </>}>
+          <Route path="/" element={<> <Header/> <Courses/> <Footer/> </>}>
           </Route>
           <Route path="/PostInternship" element={ <> <PostInternship/>  </>}>
           </Route>
-          <Route path="/research" element={ <> <ResearchPaper/>  <Footer/> </>}>
+          <Route path="/research" element={ <> <NavBar/> <ResearchPaper/>  <Footer/> </>}>
           </Route>
-
+          <Route path="/Header" element={<Header/>}>
+          </Route>
+          <Route path="/NavBar" element={<NavBar/>}>
+          </Route>
 
         </Routes>
       

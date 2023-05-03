@@ -1,24 +1,23 @@
-import React from "react";
-import "./NavBar.css";
+import React from 'react'
+import './NavBar.css'
+import dropdown from "../images/dropdown.svg"
 
 const NavBar = () => {
   return (
-    <div>
-      {" "}
-      <nav className="rectangle-parent">
-        <div className="group-child" />
-        <div className="home">{`Home `}</div>
-        <div className="courses">Courses</div>
-        <div className="research">Research</div>
-        <div className="interview">Interview</div>
-        <div className="log-in">Log in</div>
-        <button className="rectangle-group">
-          <div className="group-item" />
-          <div className="registration">Registration</div>
-        </button>
-      </nav>
-    </div>
-  );
-};
+      <div className='navbar-rectangle'>
+        <ul>
+          <li className='logo'>Internship Portal</li>
+          <li className='home'>Home</li>
+          <li className='courses'>Courses</li>
+          <li className='research'>Research</li>
+          <li className='interview'>Interview</li>
+          <img src={dropdown} className='dropdown'></img>
+          <li className='username'>Kashish Gandhi</li>
+          <li className='profile-pic'></li>
+        </ul>
+      </div>
+
+  )
+}
 
 export default NavBar;
