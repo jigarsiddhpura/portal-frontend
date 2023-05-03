@@ -12,7 +12,7 @@ import frame8 from "../images/frame8.svg"
 import frame9 from "../images/frame9.svg"
 import frame10 from "../images/frame10.svg"
 import frame11 from "../images/frame11.svg"
-import NavBar from "../utility/NavBar";
+import NavBar from "../utility/landingNavBar";
 
 const LandingPage = () => {
   return (
@@ -299,7 +299,6 @@ const LandingPage = () => {
       <div className="transactions">Transactions</div>
       <div className="programs">Programs</div>
       <div className="community">Community</div>
-      <div className="internship-portal1">Internship Portal</div>
       <div className="internship-portal2">Internship Portal</div>
     </div>
   );
