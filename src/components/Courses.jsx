@@ -16,6 +16,7 @@ import star from "../images/star.png";
 import time from "../images/time.png";
 import Footer from "../utility/Footer";
 import { useEffect, useState } from "react";
+import NavBar from "../utility/NavBar"
 
 const Courses = () => {
   // checking local Storage after each update
@@ -27,9 +28,12 @@ const Courses = () => {
 
   return (
     <>
-      <ResponsiveDrawer />
+    <div style={{display:'flex', flexDirection:'column', backgroundColor:'#e0e0e0'}}>
+
+      {/* <NavBar/> */}
+      <ResponsiveDrawer drawerHeading={'All Courses'}/>
       <div
-        className="container"
+        className="coursesContainer"
         style={{ marginLeft: isDrawerOpen ? "245px" : "10px" }}
       >
         <Card
@@ -38,6 +42,7 @@ const Courses = () => {
             maxWidth: 345,
             width: "22rem",
             height: "22rem",
+            margin:'0.5rem'
           }}
         >
           <CardMedia
@@ -118,7 +123,7 @@ const Courses = () => {
           </CardContent>
         </Card>
       </div>
-      <Footer />
+      </div>
     </>
   );
 };

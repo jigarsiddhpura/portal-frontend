@@ -40,42 +40,42 @@
 }
 
 .group-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 6px;
-    background-color: #85d1a0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-    width: 174px;
-    height: 55px;
-  }
-  .registration {
-    position: absolute;
-    top: 18px;
-    left: 38px;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: Inter;
-    color: #fff;
-    text-align: left;
-    display: inline-block;
-    width: 98px;
-  }
-  .rectangle-group {
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    background-color: transparent;
-    position: absolute;
-    top: 23px;
-    left: 1283px;
-    width: 174px;
-    height: 55px;
-  }
-  .rectangle-parent {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1520px;
-    height: 100px;
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 6px;
+  background-color: #85d1a0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  width: 174px;
+  height: 55px;
+}
+.registration {
+  position: absolute;
+  top: 18px;
+  left: 38px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: Inter;
+  color: #fff;
+  text-align: left;
+  display: inline-block;
+  width: 98px;
+}
+.rectangle-group {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 23px;
+  left: 1283px;
+  width: 174px;
+  height: 55px;
+}
+.rectangle-parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1520px;
+  height: 100px;
+}
