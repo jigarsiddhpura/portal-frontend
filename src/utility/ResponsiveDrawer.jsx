@@ -205,14 +205,16 @@ export default function ResponsiveDrawer({drawerHeading}) {
           <Box sx={{ display: "flex" }}>
             <CssBaseline />
             <AppBar
-              // position="fixed"
+              position=""
               open={open}
               style={{
                 backgroundColor: "white",
                 boxShadow: "none",
               }}
             >
-              <Toolbar>
+              <Toolbar
+              sx={{marginLeft:'5rem'}}
+              >
                 <IconButton
                   color="inherit"
                   aria-label="open drawer"

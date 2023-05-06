@@ -15,7 +15,6 @@ import Header from './utility/Header';
 function App() {
   return (
     <div className="App">
-        {/* <Login/> */}
         <Router>
         <Routes>
           <Route path="/Landing" element={<LandingPage/>}>
@@ -26,9 +25,9 @@ function App() {
           </Route>
           <Route path="/" element={<> <Header/> <Courses/> <Footer/> </>}>
           </Route>
-          <Route path="/PostInternship" element={ <> <PostInternship/>  </>}>
+          <Route path="/PostInternship" element={ <> <NavBar/> <PostInternship/>  </>}>
           </Route>
-          <Route path="/research" element={ <> <NavBar/> <ResearchPaper/>  <Footer/> </>}>
+          <Route path="/research" element={ <> <Header/> <ResearchPaper/>  <Footer/> </>}>
           </Route>
           <Route path="/Header" element={<Header/>}>
           </Route>
