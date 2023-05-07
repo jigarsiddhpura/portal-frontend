@@ -9,29 +9,32 @@ import LandingPage from './components/LandingPage';
 import PostInternship from './components/PostInternship';
 import NavBar from './utility/NavBar';
 import Footer from './utility/Footer';
-import ResearchPaper from './components/ResearchPaper';
+import PostResearch from './components/PostResearch';
 import Header from './utility/Header';
+import ApplyResearch from './components/ApplyResearch';
 
 function App() {
   return (
     <div className="App">
         <Router>
         <Routes>
-          <Route path="/Landing" element={<LandingPage/>}>
+          <Route path="/" element={<LandingPage/>}>
           </Route>
-          <Route path="/Signup" element={<Signup/>}>
+          <Route path="/signup" element={<Signup/>}>
           </Route>
-          <Route path="/Login" element={<Login/>}>
+          <Route path="/login" element={<Login/>}>
           </Route>
-          <Route path="/" element={<> <Header/> <Courses/> <Footer/> </>}>
+          <Route path="/courses" element={<> <Header/> <Courses/> <Footer/> </>}>
           </Route>
           <Route path="/PostInternship" element={ <> <NavBar/> <PostInternship/>  </>}>
           </Route>
-          <Route path="/research" element={ <> <Header/> <ResearchPaper/>  <Footer/> </>}>
+          <Route path="/postresearch" element={ <> <Header/> <PostResearch/>  <Footer/> </>}>
           </Route>
-          <Route path="/Header" element={<Header/>}>
+          <Route path="/applyresearch" element={ <> <Header/> <ApplyResearch/>  <Footer/> </>}>
           </Route>
-          <Route path="/NavBar" element={<NavBar/>}>
+          <Route path="/header" element={<Header/>}>
+          </Route>
+          <Route path="/nav" element={<NavBar/>}>
           </Route>
 
         </Routes>

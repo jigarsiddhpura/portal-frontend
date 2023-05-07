@@ -1,13 +1,10 @@
 import React from "react";
-import NavBar from "../utility/NavBar";
-import Login from "./Login";
 import { useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { useFormik } from "formik";
-import Paper from "@mui/material/Paper";
 import * as yup from "yup";
 import humanAI from "../images/humanAI.png";
 import "./InternshipForm.css";
