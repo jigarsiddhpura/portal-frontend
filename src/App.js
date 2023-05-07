@@ -8,6 +8,9 @@ import Courses from './components/Courses';
 import LandingPage from './components/LandingPage';
 import Header from './utility/Header';
 import NavBar from './utility/NavBar';
+import UserProfile from './components/UserProfile';
+import NavBarProfessor from './utility/NavBarProfessor';
+import ProfessorProfile from './components/ProfessorProfile';
 
 function App() {
   return (
@@ -26,6 +29,12 @@ function App() {
           <Route path="/Header" element={<Header/>}>
           </Route>
           <Route path="/NavBar" element={<NavBar/>}>
+          </Route>
+          <Route path="/UserProfile" element={<UserProfile/>}>
+          </Route>
+          <Route path="/ProfessorNav" element={<NavBarProfessor/>}>
+          </Route>
+          <Route path="/ProfessorProfile" element={<ProfessorProfile/>}>
           </Route>
 
         </Routes>

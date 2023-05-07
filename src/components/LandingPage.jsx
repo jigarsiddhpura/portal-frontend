@@ -1,6 +1,6 @@
 import "./LandingPage.css";
 import React from "react";
-import courseImg from "../images/courseImg.png"
+import frame from "../images/frame.svg"
 import frame1 from "../images/frame1.svg"
 import frame2 from "../images/frame2.svg"
 import frame3 from "../images/frame3.svg"
@@ -12,6 +12,26 @@ import frame8 from "../images/frame8.svg"
 import frame9 from "../images/frame9.svg"
 import frame10 from "../images/frame10.svg"
 import frame11 from "../images/frame11.svg"
+import ellipse2 from "../images/ellipse-2.svg"
+import image1 from "../images/image-2@2x.png"
+import image2 from "../images/image-3@2x.png"
+import ellipse3 from "../images/ellipse-3.svg"
+import ellipse4 from "../images/ellipse-4.svg"
+import ellipse5 from "../images/ellipse-5.svg"
+import ellipse6 from "../images/ellipse-6.svg"
+import jobseekerImg from "../images/job-seeker@2x.png"
+import personalgrowthImg from "../images/personal-growth@2x.png"
+import star1 from "../images/star-1.svg"
+import star2 from "../images/star-2.svg"
+import ellipse18 from "../images/ellipse-18@2x.png"
+import ellipse19 from "../images/ellipse-19@2x.png"
+import ellipse20 from "../images/ellipse-20@2x.png"
+import ellipse21 from "../images/ellipse-21@2x.png"
+import ellipse22 from "../images/ellipse-22@2x.png"
+import ellipse23 from "../images/ellipse-23@2x.png"
+import ellipse11 from "../images/ellipse-11.svg"
+import ellipse12 from "../images/ellipse-12.svg"
+import ellipse14 from "../images/ellipse-14.svg"
 import NavBar from "../utility/landingNavBar";
 
 const LandingPage = () => {
@@ -31,8 +51,8 @@ const LandingPage = () => {
       <div className="rectangle-container">
         <div className="group-inner" />
         <div className="rectangle-div" />
-        <img className="ellipse-icon" alt="pictureMissing" src="../images/ellipse-2.svg" />
-        <img className="image-2-icon" alt="pictureMissing" src="../images/image-2@2x.png" />
+        <img className="ellipse-icon" alt="pictureMissing" src={ellipse2} />
+        <img className="image-2-icon" alt="pictureMissing" src={image1}/>
         <div className="group-child1" />
         <div className="biggest-internship-opportunity-container">
           <p className="biggest-internship">
@@ -41,32 +61,32 @@ const LandingPage = () => {
           </p>
           <p className="opportunity-platform">Opportunity Platform</p>
         </div>
-        <img className="image-3-icon" alt="pictureMissing" src="../images/image-3@2x.png" />
+        <img className="image-3-icon" alt="pictureMissing" src={image2} />
         <div className="group-child2" />
         <div className="group-child3" />
         <div className="industry-level-internships">
           Industry Level Internships
         </div>
-        <img className="group-child4" alt="pictureMissing" src="../images/ellipse-3.svg" />
-        <img className="group-child5" alt="pictureMissing" src="../images/ellipse-4.svg" />
-        <img className="group-child6" alt="pictureMissing" src="../images/ellipse-5.svg" />
+        <img className="group-child4" alt="pictureMissing" src={ellipse3} />
+        <img className="group-child5" alt="pictureMissing" src={ellipse4} />
+        <img className="group-child6" alt="pictureMissing" src={ellipse5} />
         <div className="group-child7" />
         <div className="group-child8" />
         <div className="group-child9" />
         <div className="group-child10" />
         <div className="group-child11" />
         <div className="group-child12" />
-        <img className="job-seeker-icon" alt="pictureMissing" src="../images/job-seeker@2x.png" />
+        <img className="job-seeker-icon" alt="pictureMissing" src={jobseekerImg} />
         <img
           className="personal-growth-icon"
           alt="pictureMissing"
-          src="../images/personal-growth@2x.png"
+          src={personalgrowthImg}
         />
       </div>
       <div className="launch-learn-grow">Launch, Learn, Grow</div>
       <div className="start-today">Start Today</div>
       <div className="landing-page-child1" />
-      <img className="star-icon" alt="pictureMissing" src="../images/star-1.svg" />
+      <img className="star-icon" alt="pictureMissing" src={star1} />
       <div className="unleash-your-potential">
         Unleash your potential with us
       </div>
@@ -77,15 +97,15 @@ const LandingPage = () => {
       <button className="rectangle-parent1">
         <div className="group-child14" />
         <div className="browse-jobs">Browse Jobs</div>
-        <img className="frame-icon" alt="pictureMissing" src="../images/frame.svg" />
+        <img className="frame-icon" alt="pictureMissing" src={frame} />
       </button>
       <div className="landing-page-child2" />
-      <img className="landing-page-child3" alt="pictureMissing" src="../images/star-2.svg" />
+      <img className="landing-page-child3" alt="pictureMissing" src={star2} />
       <div className="most-of-the-container">
         <p className="biggest-internship">{`Most of the students have given a five `}</p>
         <p className="biggest-internship">star review for us.</p>
       </div>
-      <img className="landing-page-child4" alt="pictureMissing" src="../images/ellipse-6.svg" />
+      <img className="landing-page-child4" alt="pictureMissing" src={ellipse6} />
       <div className="landing-page-child5" />
       <div className="landing-page-child6" />
       <img className="frame-icon1" alt="pictureMissing" src={frame1} />
@@ -156,7 +176,7 @@ const LandingPage = () => {
         <div className="group-child17" />
         <div className="load-more-internships">Load More Internships</div>
       </button>
-      <img className="landing-page-child11" alt="pictureMissing" src="../images/ellipse-18@2x.png" />
+      <img className="landing-page-child11" alt="pictureMissing" src={ellipse18} />
       <div className="landing-page-child12" />
       <div className="full-time">Full-Time</div>
       <div className="landing-page-child13" />
@@ -172,7 +192,7 @@ const LandingPage = () => {
         <div className="group-child16" />
         <div className="apply-now">Apply Now</div>
       </button>
-      <img className="landing-page-child15" alt="pictureMissing" src="../images/ellipse-19@2x.png" />
+      <img className="landing-page-child15" alt="pictureMissing" src={ellipse19}/>
       <div className="landing-page-child16" />
       <div className="full-time1">Full-Time</div>
       <div className="landing-page-child17" />
@@ -188,7 +208,7 @@ const LandingPage = () => {
         <div className="group-child16" />
         <div className="apply-now">Apply Now</div>
       </button>
-      <img className="landing-page-child19" alt="pictureMissing" src="../images/ellipse-20@2x.png" />
+      <img className="landing-page-child19" alt="pictureMissing" src={ellipse20} />
       <div className="landing-page-child20" />
       <div className="full-time2">Full-Time</div>
       <div className="landing-page-child21" />
@@ -204,7 +224,7 @@ const LandingPage = () => {
         <div className="group-child16" />
         <div className="apply-now">Apply Now</div>
       </button>
-      <img className="landing-page-child23" alt="pictureMissing" src="../images/ellipse-21@2x.png" />
+      <img className="landing-page-child23" alt="pictureMissing" src={ellipse21} />
       <div className="landing-page-child24" />
       <div className="full-time3">Full-Time</div>
       <div className="landing-page-child25" />
@@ -220,7 +240,7 @@ const LandingPage = () => {
         <div className="group-child16" />
         <div className="apply-now">Apply Now</div>
       </button>
-      <img className="landing-page-child27" alt="pictureMissing" src="../images/ellipse-22@2x.png" />
+      <img className="landing-page-child27" alt="pictureMissing" src={ellipse22} />
       <div className="landing-page-child28" />
       <div className="full-time4">Full-Time</div>
       <div className="landing-page-child29" />
@@ -234,13 +254,13 @@ const LandingPage = () => {
         <div className="group-child16" />
         <div className="apply-now">Apply Now</div>
       </button>
-      <img className="landing-page-child31" alt="pictureMissing" src="../images/ellipse-23@2x.png" />
+      <img className="landing-page-child31" alt="pictureMissing" src={ellipse23} />
       <div className="landing-page-child32" />
       <div className="full-time5">Full-Time</div>
       <div className="landing-page-child33" />
-      <img className="landing-page-child34" alt="pictureMissing" src="../images/ellipse-11.svg" />
-      <img className="landing-page-child35" alt="pictureMissing" src="../images/ellipse-11.svg" />
-      <img className="landing-page-child36" alt="pictureMissing" src="../images/ellipse-12.svg" />
+      <img className="landing-page-child34" alt="pictureMissing" src={ellipse11}/>
+      <img className="landing-page-child35" alt="pictureMissing" src={ellipse11}/>
+      <img className="landing-page-child36" alt="pictureMissing" src={ellipse12} />
       <div className="subscribe-for-get-container">
         <p className="biggest-internship">Subscribe for get update</p>
         <p className="biggest-internship">for every internships</p>
@@ -262,19 +282,19 @@ const LandingPage = () => {
         Connecting talented individuals with their dream careers
       </div>
       <button className="landing-page-inner1">
-        <img className="group-child24" alt="pictureMissing" src="../images/ellipse-14.svg" />
+        <img className="group-child24" alt="pictureMissing" src={ellipse14} />
       </button>
       <button className="landing-page-inner2">
-        <img className="group-child24" alt="pictureMissing" src="../images/ellipse-14.svg" />
+        <img className="group-child24" alt="pictureMissing" src={ellipse14} />
       </button>
       <button className="ellipse-parent">
-        <img className="group-child24" alt="pictureMissing" src="../images/ellipse-14.svg" />
+        <img className="group-child24" alt="pictureMissing" src={ellipse14}  />
         <img className="frame-icon12" alt="pictureMissing" src={frame7} />
       </button>
       <img className="frame-icon13" alt="pictureMissing" src={frame8} />
       <img className="frame-icon14" alt="pictureMissing" src={frame9} />
       <button className="ellipse-group">
-        <img className="group-child24" alt="pictureMissing" src="../images/ellipse-14.svg" />
+        <img className="group-child24" alt="pictureMissing" src={ellipse14} />
         <img className="frame-icon12" alt="pictureMissing" src={frame10} />
       </button>
       <div className="landing-page-child38" />
