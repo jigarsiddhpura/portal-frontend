@@ -8,6 +8,9 @@ import Courses from './components/Courses';
 import LandingPage from './components/LandingPage';
 import PostInternship from './components/PostInternship';
 import NavBar from './utility/NavBar';
+import UserProfile from './components/UserProfile';
+import NavBarProfessor from './utility/NavBarProfessor';
+import ProfessorProfile from './components/ProfessorProfile';
 import Footer from './utility/Footer';
 import PostResearch from './components/PostResearch';
 import Header from './utility/Header';
@@ -20,11 +23,11 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage/>}>
           </Route>
-          <Route path="/signup" element={<Signup/>}>
+          <Route path="/Signup" element={<Signup/>}>
           </Route>
-          <Route path="/login" element={<Login/>}>
+          <Route path="/Login" element={<Login/>}>
           </Route>
-          <Route path="/courses" element={<> <Header/> <Courses/> <Footer/> </>}>
+          <Route path="/Courses" element={<> <Header/> <Courses/> <Footer/> </>}>
           </Route>
           <Route path="/PostInternship" element={ <> <NavBar/> <PostInternship/>  </>}>
           </Route>
@@ -35,6 +38,12 @@ function App() {
           <Route path="/header" element={<Header/>}>
           </Route>
           <Route path="/nav" element={<NavBar/>}>
+          </Route>
+          <Route path="/UserProfile" element={<UserProfile/>}>
+          </Route>
+          <Route path="/ProfessorNav" element={<NavBarProfessor/>}>
+          </Route>
+          <Route path="/ProfessorProfile" element={<ProfessorProfile/>}>
           </Route>
 
         </Routes>
