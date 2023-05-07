@@ -4,7 +4,6 @@ import dropdown from "../images/dropdown.svg"
 
 const NavBar = () => {
   return (
-   
       <div className='navbar-rectangle'>
         <ul>
           <li className='logo'>Internship Portal</li>
@@ -21,4 +20,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default NavBar;

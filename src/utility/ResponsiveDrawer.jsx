@@ -21,7 +21,8 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Checkbox from "@mui/material/Checkbox";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
-// import './ResponsiveDrawer.css'
+import Footer from "./Footer";
+import NavBar from "./NavBar";
 
 var drawerWidth = 240;
 
@@ -73,7 +74,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function ResponsiveDrawer() {
+export default function ResponsiveDrawer({drawerHeading}) {
   const theme = useTheme();
 
   // open, setOpen is respect to the drawer not List
@@ -204,14 +205,16 @@ export default function ResponsiveDrawer() {
           <Box sx={{ display: "flex" }}>
             <CssBaseline />
             <AppBar
-              position="fixed"
+              position=""
               open={open}
               style={{
                 backgroundColor: "white",
                 boxShadow: "none",
               }}
             >
-              <Toolbar>
+              <Toolbar
+              sx={{marginLeft:'5rem'}}
+              >
                 <IconButton
                   color="inherit"
                   aria-label="open drawer"
@@ -238,7 +241,7 @@ export default function ResponsiveDrawer() {
                     color: "black",
                   }}
                 >
-                  All Courses
+                  {drawerHeading}
                 </Typography>
               </Toolbar>
             </AppBar>
