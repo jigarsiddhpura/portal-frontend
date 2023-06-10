@@ -32,6 +32,7 @@ const Courses = () => {
 
       {/* <NavBar/> */}
       <ResponsiveDrawer drawerHeading={'All Courses'}/>
+      {/* {ResponsiveDrawer({ drawerHeading: 'All Courses' })} */}
       <div
         className="coursesContainer"
         style={{ marginLeft: isDrawerOpen ? "245px" : "10px" }}

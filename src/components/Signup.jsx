@@ -260,7 +260,7 @@ const Signup = () => {
                 <TextField
                   id="sapid"
                   required
-                  type="text"
+                  type="number"
                   label="Sap ID"
                   placeholder="Sap Id"
                   name="sapid"
@@ -274,7 +274,7 @@ const Signup = () => {
                 />
                 <TextField
                   id="lname"
-                  type="text"
+                  type="number"
                   label="contact"
                   placeholder="contact"
                   name="contact"

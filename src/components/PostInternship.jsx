@@ -251,7 +251,6 @@ const PostInternshipForm = () => {
 const PostInternship = () => {
   return (
     <React.Fragment>
-       {/* <NavBar />  */}
       <PostInternshipForm />
     </React.Fragment>
   );

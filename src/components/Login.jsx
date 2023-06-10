@@ -150,7 +150,7 @@ const Login = () => {
                   Email
                 </InputLabel>
                 <OutlinedInput
-                  id="outlined-adornment-email"
+                  id="email"
                   endAdornment={
                     <InputAdornment position="end">
                       <EmailOutlinedIcon />
@@ -158,8 +158,8 @@ const Login = () => {
                   }
                   type="email"
                   label="Email"
-                  placeholder="Email"
                   name="email"
+                  placeholder="Email"
                   required
                 />
               </FormControl>
@@ -261,7 +261,7 @@ const Login = () => {
 
   return (
     <>
-      <Login />
+      {Login()}
     </>
   );
 };

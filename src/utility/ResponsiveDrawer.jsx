@@ -42,6 +42,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         duration: theme.transitions.duration.enteringScreen,
       }),
       margin: "0 0 6px 0",
+      border: "2px solid green",
       padding: 0,
     }),
   })
@@ -56,6 +57,7 @@ const AppBar = styled(MuiAppBar, {
   }),
   ...(open && {
     // width: `calc(10% - ${drawerWidth}px)`,
+    // border: "2px solid red",
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
     transition: theme.transitions.create(["margin", "width"], {
@@ -67,6 +69,7 @@ const AppBar = styled(MuiAppBar, {
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
+  // border: "2px solid blue",
   alignItems: "center",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
@@ -74,7 +77,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function ResponsiveDrawer({drawerHeading}) {
+export default function ResponsiveDrawer({ drawerHeading }) {
   const theme = useTheme();
 
   // open, setOpen is respect to the drawer not List
@@ -89,9 +92,9 @@ export default function ResponsiveDrawer({drawerHeading}) {
   };
 
   React.useEffect(() => {
-    window.localStorage.setItem('drawerOpen',JSON.stringify(open));
+    window.localStorage.setItem("drawerOpen", JSON.stringify(open));
     window.dispatchEvent(new Event("storage"));
-  })
+  });
 
   // openList is respect to lists inside drawer
   const [openList, setOpenList] = React.useState([false, false, false, false]);
@@ -160,7 +163,13 @@ export default function ResponsiveDrawer({drawerHeading}) {
           </ListItemButton>
           <Collapse in={openList[listIndex]} timeout="auto" unmountOnExit>
             <List
-              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+              sx={{
+                width: "100%",
+                maxWidth: 360,
+                bgcolor: "background.paper",
+                // border: "2px solid gold",
+                height: "auto",
+              }}
             >
               {SidebarList.map((type, value) => {
                 const labelId = `checkbox-list-label-${value}`;
@@ -202,106 +211,104 @@ export default function ResponsiveDrawer({drawerHeading}) {
 
   return (
     <>
-          <Box sx={{ display: "flex" }}>
-            <CssBaseline />
-            <AppBar
-              position=""
-              open={open}
-              style={{
-                backgroundColor: "white",
-                boxShadow: "none",
-              }}
-            >
-              <Toolbar
-              sx={{marginLeft:'5rem'}}
-              >
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  onClick={handleDrawerOpen}
-                  edge="start"
-                  sx={{
-                    mr: 2,
-                    ...(open && { display: "none" }),
-                    color: "black",
-                  }}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography
-                  variant="h6"
-                  noWrap
-                  component="div"
-                  style={{
-                    fontFamily: "Arya",
-                    fontStyle: "normal",
-                    fontWeight: "700",
-                    fontSize: "1.5rem",
-                    lineHeight: "58px",
-                    color: "black",
-                  }}
-                >
-                  {drawerHeading}
-                </Typography>
-              </Toolbar>
-            </AppBar>
-            <Drawer
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <AppBar
+          position="relative"
+          open={open}
+          style={{
+            backgroundColor: "white",
+            boxShadow: "none",
+          }}
+        >
+          <Toolbar sx={{ marginLeft: "5rem" }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
               sx={{
-                width: drawerWidth,
-                flexShrink: 0,
-                "& .MuiDrawer-paper": {
-                  width: drawerWidth,
-                  boxSizing: "border-box",
-                },
+                mr: 2,
+                ...(open && { display: "none" }),
+                color: "black",
               }}
-              variant="persistent"
-              anchor="left"
-              open={open}
             >
-              <DrawerHeader>
-                <IconButton onClick={handleDrawerClose}>
-                  {theme.direction === "ltr" ? (
-                    <ChevronLeftIcon />
-                  ) : (
-                    <ChevronRightIcon />
-                  )}
-                </IconButton>
-              </DrawerHeader>
-              <Divider />
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              style={{
+                fontFamily: "Arya",
+                fontStyle: "normal",
+                fontWeight: "700",
+                fontSize: "1.5rem",
+                lineHeight: "58px",
+                color: "black",
+              }}
+            >
+              {drawerHeading}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
+          }}
+          variant="persistent"
+          anchor="left"
+          open={open}
+        >
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
 
-              {
-                <NestedList
-                  SidebarList={InternshipTypes}
-                  listIndex={0}
-                  Listname="Internship Type"
-                />
-              }
-              {
-                <NestedList
-                  SidebarList={Category}
-                  listIndex={1}
-                  Listname="Category"
-                />
-              }
-              {
-                <NestedList
-                  SidebarList={Experience}
-                  listIndex={2}
-                  Listname="Experience"
-                />
-              }
-              {
-                <NestedList
-                  SidebarList={StipendRange}
-                  listIndex={3}
-                  Listname="Stipend Range"
-                />
-              }
-            </Drawer>
-            <Main open={open}>
-              <DrawerHeader />
-            </Main>
-          </Box>
+          {
+            <NestedList
+              SidebarList={InternshipTypes}
+              listIndex={0}
+              Listname="Internship Type"
+            />
+          }
+          {
+            <NestedList
+              SidebarList={Category}
+              listIndex={1}
+              Listname="Category"
+            />
+          }
+          {
+            <NestedList
+              SidebarList={Experience}
+              listIndex={2}
+              Listname="Experience"
+            />
+          }
+          {
+            <NestedList
+              SidebarList={StipendRange}
+              listIndex={3}
+              Listname="Stipend Range"
+            />
+          }
+        </Drawer>
+        <Main open={open}>
+          <DrawerHeader />
+        </Main>
+      </Box>
     </>
   );
 }
