@@ -108,3 +108,16 @@ background-clip: text;
 text-fill-color: transparent;
 }
 
+.log-in1:hover,.registration1:hover{
+  text-decoration: none;
+  color: #212121;
+}
+
+.log-in1{
+  color: #212121;
+}
+
+.registration1{
+  color: #fff;
+}
+

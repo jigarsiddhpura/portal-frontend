@@ -1,6 +1,7 @@
 import React from 'react'
 import './NavBar.css'
 import dropdown from "../images/dropdown.svg"
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
   return (
@@ -8,12 +9,12 @@ const NavBar = () => {
         <ul>
           <li className='logo'>Internship Portal</li>
           <li className='home'>Home</li>
-          <li className='courses'>Courses</li>
-          <li className='research'>Research</li>
-          <li className='interview'>Interview</li>
+          <li ><Link to="/Courses"className='courses'>Courses</Link></li>
+          <li><Link to="/applyresearch" className='research'>Research</Link></li>
+          {/* <li><Link to="/Courses" className='interview'>Interview</Link></li> */}
           <img src={dropdown} className='dropdown'></img>
-          <li className='username'>Kashish Gandhi</li>
-          <li className='profile-pic'></li>
+          <li className='username'><Link to="/UserProfile" className='user-name1'>Kashish Gandhi</Link></li>
+          <Link to="/UserProfile"> <li className='profile-pic'></li></Link>
         </ul>
       </div>
 

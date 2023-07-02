@@ -1647,3 +1647,10 @@
   color: #74757e;
   font-family: Inter;
 }
+.registration2:hover{
+  color: #fff;
+  text-decoration: none;
+}
+.registration2{
+  color: #fff;
+}

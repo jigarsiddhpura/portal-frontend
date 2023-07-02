@@ -33,6 +33,7 @@ import ellipse11 from "../images/ellipse-11.svg"
 import ellipse12 from "../images/ellipse-12.svg"
 import ellipse14 from "../images/ellipse-14.svg"
 import NavBar from "../utility/landingNavBar";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
@@ -92,7 +93,7 @@ const LandingPage = () => {
       </div>
       <button className="group-button">
         <div className="group-child13" />
-        <div className="get-started">Get Started</div>
+        <div className="get-started"><Link to="/Signup" className="registration2">Get Started</Link></div>
       </button>
       <button className="rectangle-parent1">
         <div className="group-child14" />

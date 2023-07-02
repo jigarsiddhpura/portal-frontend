@@ -12,7 +12,14 @@ background: #FFFFFF;
 li{
     list-style: none;
 }
-
+.post-professor1,.username-professor1{
+    color: #212121;
+    text-decoration: none;
+}
+.post-professor1:hover,.username-professor1:hover{
+    color: #212121;
+    text-decoration: none;
+}
 .logo{
     width: 21.125rem;
 height: 3rem;
