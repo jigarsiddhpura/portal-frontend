@@ -1,24 +1,49 @@
-import React from 'react'
-import './NavBar.css'
-import dropdown from "../images/dropdown.svg"
-import { Link } from 'react-router-dom'
+import { useState, useCallback } from "react";
+import Toggle from "../components/Toggle";
+import PortalDrawer from "../components/PortalDrawer";
+import "./NavBar.css";
+const NavBar= () => {
+  const [isToggleOpen, setToggleOpen] = useState(false);
 
-const NavBar = () => {
+  const openToggle = useCallback(() => {
+    setToggleOpen(true);
+  }, []);
+
+  const closeToggle = useCallback(() => {
+    setToggleOpen(false);
+  }, []);
+
   return (
-      <div className='navbar-rectangle'>
-        <ul>
-          <li className='logo'>Internship Portal</li>
-          <li className='home'>Home</li>
-          <li ><Link to="/Courses"className='courses'>Courses</Link></li>
-          <li><Link to="/applyresearch" className='research'>Research</Link></li>
-          {/* <li><Link to="/Courses" className='interview'>Interview</Link></li> */}
-          <img src={dropdown} className='dropdown'></img>
-          <li className='username'><Link to="/UserProfile" className='user-name1'>Kashish Gandhi</Link></li>
-          <Link to="/UserProfile"> <li className='profile-pic'></li></Link>
-        </ul>
-      </div>
-
-  )
-}
+    <>
+      <nav className="internship-portal-parent" navbar>
+        <div className="internship-portal3">Internship Portal</div>
+        <div className="group-parent">
+          <button className="vector-wrapper" onClick={openToggle}>
+            <img className="vector-icon" alt="" src="/vector.svg" />
+          </button>
+          <section className="home-parent">
+            <div className="home3">{`Home `}</div>
+            <div className="home3">Courses</div>
+            <div className="home3">Research</div>
+          </section>
+          <section className="icon-chevron-down-parent">
+            <img
+              className="icon-chevron-down"
+              alt=""
+              src="/-icon-chevron-down.svg"
+            />
+            <div className="home3">Kashish Gandhi</div>
+            <img className="kashish-2-icon1" alt="" src="/kashish-21@2x.png" />
+          </section>
+        </div>
+      </nav>
+      {isToggleOpen && (
+        <PortalDrawer placement="Right" onOutsideClick={closeToggle}>
+          <Toggle onClose={closeToggle} />
+        </PortalDrawer>
+      )}
+    </>
+  );
+};
 
 export default NavBar;
