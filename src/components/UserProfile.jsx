@@ -1,4 +1,4 @@
-import "./UserProfile.css";
+import "../css/UserProfile.css";
 import React, { useState, useRef }  from "react";
 import NavBar from '../utility/NavBar'
 import Textarea from '../utility/Textarea';

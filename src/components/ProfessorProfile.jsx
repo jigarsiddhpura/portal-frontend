@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBarProfessor from '../utility/NavBarProfessor';
-import './ProfessorProfile.css'
+import '../css/ProfessorProfile.css'
 import searchicon from '../images/search-icon.svg'
 import Textarea from '../utility/Textarea'
 

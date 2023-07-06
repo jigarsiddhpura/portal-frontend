@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from './NavBar'
-import './Header.css'
+import '../css/Header.css'
 import lines1 from "../images/bg-lines1.svg"
 import lines2 from "../images/bg-lines2.svg"
 import searchicon from "../images/search-icon.svg"

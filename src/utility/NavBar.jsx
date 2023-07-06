@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import Toggle from "../components/Toggle";
 import PortalDrawer from "../components/PortalDrawer";
-import "./NavBar.css";
+import "../css/NavBar.css";
 const NavBar= () => {
   const [isToggleOpen, setToggleOpen] = useState(false);
 
@@ -33,7 +33,7 @@ const NavBar= () => {
               src="/-icon-chevron-down.svg"
             />
             <div className="home3">Kashish Gandhi</div>
-            <img className="kashish-2-icon1" alt="" src="/kashish-21@2x.png" />
+            <img className="pp" alt="" src="/kashish-21@2x.png" />
           </section>
         </div>
       </nav>

@@ -1,4 +1,4 @@
-import "./LandingPage.css";
+import "../css/LandingPage.css";
 import React from "react";
 import frame from "../images/frame.svg"
 import frame1 from "../images/frame1.svg"

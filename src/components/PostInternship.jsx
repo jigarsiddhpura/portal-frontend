@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import humanAI from "../images/humanAI.png";
-import "./InternshipForm.css";
+import "../css/InternshipForm.css";
 import makeAnimated from "react-select/animated";
 import { skillsOptions } from "../docs/data.ts";
 import Select from "react-select";

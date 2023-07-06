@@ -1,5 +1,5 @@
 import React from 'react'
-import './NavBarProfessor.css'
+import '../css/NavBarProfessor.css'
 import dropdown from "../images/dropdown.svg"
 import { Link } from 'react-router-dom'
 

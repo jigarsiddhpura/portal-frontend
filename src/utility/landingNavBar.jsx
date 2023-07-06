@@ -1,5 +1,5 @@
 import React from 'react'
-import "./landingNavBar.css"
+import "../css/landingNavBar.css"
 import { Link } from 'react-router-dom'
 
 const landingNavBar = () => {

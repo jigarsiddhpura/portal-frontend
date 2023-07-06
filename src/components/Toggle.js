@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "./Toggle.css";
+import "../css/Toggle.css";
 const Toggle = ({ onClose }) => {
   useEffect(() => {
     const scrollAnimElements = document.querySelectorAll(
@@ -33,8 +33,8 @@ const Toggle = ({ onClose }) => {
 
   return (
     <div className="toggle" data-animate-on-scroll>
-      <div className="kashish-gandhi2">Kashish Gandhi</div>
-      <img className="kashish-2-icon" alt="" src="/kashish-2@2x.png" />
+      <div className="user1">Kashish Gandhi</div>
+      <img className="pp1" alt="" src="/kashish-2@2x.png" />
       <div className="home2">{`Home `}</div>
       <div className="courses2">Courses</div>
       <div className="research2">Research</div>
