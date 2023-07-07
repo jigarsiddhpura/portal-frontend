@@ -178,3 +178,84 @@ margin-top: -6.048rem;
 
 
 }
+
+/* @media screen and (max-width: 1200px) {
+    .input-rectangle {
+      width: 70%;
+      max-width: 50rem;
+      left: 18%;
+      top: -9rem;
+    }
+  
+    .bg-lines1 {
+      width: 18rem;
+      height: auto;
+      left: -19rem;
+      top: -6.3rem;
+    }
+  
+    .bg-lines2 {
+      width: 24.5rem;
+      height: auto;
+      left: 18.7rem;
+
+    }
+  
+    .search-icon {
+      margin-left: -22rem;
+      
+    }
+
+
+    .input1 {
+      width: 20rem;
+      font-size: small;
+    }
+  
+    .vertical-line {
+      margin-left: 22rem;
+
+    }
+  
+    .human-icon {
+      margin-left: 15rem;
+    }
+  
+    .input2 {
+      width: 16rem;
+      font-size: small;
+    }
+  
+    .text {
+      width: 25rem;
+      margin-left: 10rem;
+      margin-top: -8rem;
+    }
+  
+    .search-button {
+      width: 8rem;
+      margin-left: 45rem;
+      margin-top: -4rem;
+    }
+  
+    .subtitle {
+      width: 35rem;
+      margin-left: 20rem;
+      margin-top: -12rem;
+    }
+  
+    .title {
+      width: 30rem;
+      margin-left: 25rem;
+      margin-top: -8rem;
+      font-size: 2.5rem;
+      line-height: 4.5rem;
+    }
+  
+    .highlightedunderline {
+      width: 20rem;
+      margin-left: 18rem;
+      margin-top: -4.5rem;
+    }
+  }
+   */

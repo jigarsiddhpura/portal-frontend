@@ -27,7 +27,7 @@ function App() {
           </Route>
           <Route path="/Login" element={<Login/>}>
           </Route>
-          <Route path="/Courses" element={<> <Header/> <Courses/> <Footer/> </>}>
+          <Route path="/Courses" element={<> <NavBar /><Header/> <Courses/> <Footer/> </>}>
           </Route>
           <Route path="/PostInternship" element={ <> <NavBarProfessor/> <PostInternship/>  </>}>
           </Route>
