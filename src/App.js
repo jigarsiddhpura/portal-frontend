@@ -31,9 +31,9 @@ function App() {
           </Route>
           <Route path="/PostInternship" element={ <> <NavBarProfessor/> <PostInternship/>  </>}>
           </Route>
-          <Route path="/postresearch" element={ <> <Header/> <PostResearch/>  <Footer/> </>}>
+          <Route path="/postresearch" element={ <> <NavBar /><Header/> <PostResearch/>  <Footer/> </>}>
           </Route>
-          <Route path="/applyresearch" element={ <> <Header/> <ApplyResearch/>  <Footer/> </>}>
+          <Route path="/applyresearch" element={ <><NavBar /> <Header/> <ApplyResearch/>  <Footer/> </>}>
           </Route>
           <Route path="/header" element={<Header/>}>
           </Route>
