@@ -1,13 +1,13 @@
 import React from 'react'
-import NavBarProfessor from '../utility/NavBarProfessor';
+import NavBar from '../utility/NavBar';
 import '../css/ProfessorProfile.css'
 import searchicon from '../images/search-icon.svg'
 import Textarea from '../utility/Textarea'
 
 const ProfessorProfile = () => {
   return (
-    <div style={{background:"#E8FCFE", height:"94.5vh", width:"100%"}}>
-        <NavBarProfessor />
+    <div style={{background:"#E8FCFE", height:"100vh", width:"100%"}}>
+<NavBar />
         <div className='total-applicants'>Total Applicants: 19</div>
         <div className='search-professor-rectangle'>
         <img src={searchicon} className='search-icon-professor'></img>
