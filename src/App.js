@@ -15,6 +15,7 @@ import Footer from './utility/Footer';
 import PostResearch from './components/PostResearch';
 import Header from './utility/Header';
 import ApplyResearch from './components/ApplyResearch';
+import ApplyInternship from './components/ApplyInternship';
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
           <Route path="/postresearch" element={ <> <NavBar /><Header/> <PostResearch/>  <Footer/> </>}>
           </Route>
           <Route path="/applyresearch" element={ <><NavBar /> <Header/> <ApplyResearch/>  <Footer/> </>}>
+          </Route>
+          <Route path="/applyinternship" element={ <><NavBar /> <Header/> <ApplyInternship/>  <Footer/> </>}>
           </Route>
           <Route path="/header" element={<Header/>}>
           </Route>
