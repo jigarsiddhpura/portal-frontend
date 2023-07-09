@@ -13,14 +13,14 @@ const Header = () => {
          <span>{`Find your `}</span>
       ) : currentPage === '/applyresearch' ? (
         <span>{`Write your `}</span>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
         <span>{`Find your `}</span>
       ) : null}
 {currentPage === '/Courses' ? (
          <span className="dream_course_container">dream course</span>
       ) : currentPage === '/applyresearch' ? (
         <span className="dream_course_container">research paper</span>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
         <span className="dream_course_container">dream internship</span>
       ) : null}
 
@@ -41,7 +41,7 @@ const Header = () => {
         <div className="header_enhance_skills_container">
         Write your research paper under the best professors and get their LORs
       </div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
         <div className="header_enhance_skills_container">
         Find your next career at companies like Jio, KPMG, and Intel
       </div>
@@ -62,7 +62,7 @@ const Header = () => {
        <div className="header_course_name_placeholder">Course Name or keyword</div>
       ) : currentPage === '/applyresearch' ? (
         <div className="header_course_name_placeholder">Domain</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
         <div className="header_course_name_placeholder">Role Name or keyword</div>
       ) : null}
 
@@ -77,7 +77,7 @@ const Header = () => {
        <div className="header_course_name_placeholder1">Course Name or keyword</div>
       ) : currentPage === '/applyresearch' ? (
         <div className="header_course_name_placeholder1">Domain</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
         <div className="header_course_name_placeholder1">Role Name or keyword</div>
       ) : null}
           {/* <div className="header_course_name_placeholder1">Course Name or keyword</div> */}
@@ -93,7 +93,7 @@ const Header = () => {
       ) : currentPage === '/applyresearch' ? (
        
         <div className="header_university_placeholder">Professor Name</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
     
         <div className="header_university_placeholder">Company Name or Professor Name</div>
       ) : null}
@@ -109,7 +109,7 @@ const Header = () => {
       ) : currentPage === '/applyresearch' ? (
        
         <div className="header_university_placeholder">Professor Name</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
     
         <div className="header_university_placeholder">Company Name or Professor Name</div>
       ) : null}
@@ -125,7 +125,7 @@ const Header = () => {
       ) : currentPage === '/applyresearch' ? (
        
         <div className="header_search">Professor Name</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
     
         <div className="header_search">Company Name or Professor Name</div>
       ) : null}
@@ -154,7 +154,7 @@ const Header = () => {
        <div className="header_course_name_placeholder">Course Name or keyword</div>
       ) : currentPage === '/applyresearch' ? (
         <div className="header_course_name_placeholder">Domain</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
         <div className="header_course_name_placeholder">Role Name or keyword</div>
       ) : null}
           {/* <div className="header_course_name_placeholder">Course Name or keyword</div> */}
@@ -172,7 +172,7 @@ const Header = () => {
       ) : currentPage === '/applyresearch' ? (
        
         <div className="header_course_name_placeholder1">Professor Name</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
     
         <div className="header_course_name_placeholder1">Company Name or Professor Name</div>
       ) : null}
@@ -190,7 +190,7 @@ const Header = () => {
       ) : currentPage === '/applyresearch' ? (
        
         <div className="header_course_name_placeholder">Professor Name</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
     
         <div className="header_course_name_placeholder">Company Name or Professor Name</div>
       ) : null}
@@ -207,7 +207,7 @@ const Header = () => {
       ) : currentPage === '/applyresearch' ? (
        
         <div className="header_course_name_placeholder">Professor Name</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
     
         <div className="header_course_name_placeholder">Company Name or Professor Name</div>
       ) : null}
@@ -223,7 +223,7 @@ const Header = () => {
       ) : currentPage === '/applyresearch' ? (
        
         <div className="header_search">Professor Name</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
     
         <div className="header_search">Company Name or Professor Name</div>
       ) : null}
@@ -253,7 +253,7 @@ const Header = () => {
        <div className="search6">Course Name or keyword</div>
       ) : currentPage === '/applyresearch' ? (
         <div className="search6">Domain</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
         <div className="search6">Role Name or keyword</div>
       ) : null}
           {/* <div className="search6">Course Name or keyword</div> */}
@@ -276,7 +276,7 @@ const Header = () => {
       ) : currentPage === '/applyresearch' ? (
        
         <div className="header_course_name_placeholder">Professor Name</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
     
         <div className="header_course_name_placeholder">Company Name or Professor Name</div>
       ) : null}
@@ -292,7 +292,7 @@ const Header = () => {
       ) : currentPage === '/applyresearch' ? (
        
         <div className="header_course_name_placeholder">Professor Name</div>
-      ) : currentPage === '/applyresearch' ? (
+      ) : currentPage === '/applyinternship' ? (
     
         <div className="header_course_name_placeholder">Company Name or Professor Name</div>
       ) : null}
@@ -302,7 +302,19 @@ const Header = () => {
         </div>
         <div className="header_main2">
           <img className="header_search_icon_frame4" alt="" src="/frame1.svg" />
-          <div className="header_search">University</div>
+
+          {currentPage === '/Courses' ? (
+      
+      <div className="header_search">University</div>
+      ) : currentPage === '/applyresearch' ? (
+       
+        <div className="header_search">Professor Name</div>
+      ) : currentPage === '/applyinternship' ? (
+    
+        <div className="header_search">Company Name or Professor Name</div>
+      ) : null}
+
+          {/* <div className="header_search">University</div> */}
           <div className="header_frame_child7" />
         </div>
         <div className="header_main3">
@@ -318,9 +330,26 @@ const Header = () => {
           <div className="header_search">Search</div>
         </div>
       </section>
+      {currentPage === '/Courses' ? (
+      
       <div className="header_subtitle">
-        Popular : Machine Learning by Harvard, xyz course from Stanford
+      Popular : Machine Learning by Harvard, xyz course from Stanford
+    </div>
+      ) : currentPage === '/applyresearch' ? (
+       
+        <div className="header_subtitle">
+     Popular : Research on Chatgpt, Research on Deep Learning
       </div>
+      ) : currentPage === '/applyinternship' ? (
+    
+        <div className="header_subtitle">
+ Popular : UI Designer, Frontend Developer, ML Developer
+      </div>
+      ) : null}
+
+      {/* <div className="header_subtitle">
+        Popular : Machine Learning by Harvard, xyz course from Stanford
+      </div> */}
     </div>
   );
 };
