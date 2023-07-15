@@ -21,8 +21,6 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Checkbox from "@mui/material/Checkbox";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
-import Footer from "./Footer";
-import NavBar from "./NavBar";
 
 var drawerWidth = 240;
 
@@ -133,12 +131,12 @@ export default function ResponsiveDrawer({ drawerHeading }) {
     "AI/ML",
     "Robotics",
   ];
-  const Experience = [
-    "0-6 months",
-    "6-12 months",
-    "1-2 years",
-    "2 years or above",
-  ];
+  // const Experience = [
+  //   "0-6 months",
+  //   "6-12 months",
+  //   "1-2 years",
+  //   "2 years or above",
+  // ];
   const StipendRange = [
     "0 - 1,000",
     "1,000 - 5,000",
@@ -290,13 +288,13 @@ export default function ResponsiveDrawer({ drawerHeading }) {
               Listname="Category"
             />
           }
-          {
+          {/* {
             <NestedList
               SidebarList={Experience}
               listIndex={2}
               Listname="Experience"
             />
-          }
+          } */}
           {
             <NestedList
               SidebarList={StipendRange}

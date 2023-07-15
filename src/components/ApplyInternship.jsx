@@ -4,8 +4,8 @@ import ResponsiveDrawer from "../utility/ResponsiveDrawer";
 import Avatar from "@mui/material/Avatar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import ScheduleIcon from "@mui/icons-material/Schedule";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 
 import gojo from "../images/gojo.png";
 import Pagination from "@mui/material/Pagination";
@@ -38,7 +38,7 @@ const ApplyInternship = () => {
         .then((result) => setInternships(JSON.parse(result)))
         .catch((error) => console.log("error", error));
     } catch (err) {
-      console.log("Error while fetching", err);
+      console.log("Error while fetching internships : ", err);
     }
   };
 
@@ -146,7 +146,7 @@ const ApplyInternship = () => {
                         </span>
                       </Stack>
                       <Stack direction="row" spacing={2}>
-                        <ScheduleIcon color="success" />{" "}
+                        <CorporateFareIcon color="success" />{" "}
                         <span
                           style={{ color: "black", marginBottom: "0.3rem" }}
                         >
@@ -186,13 +186,28 @@ const ApplyInternship = () => {
     );
   };
 
+  function extractIdsFromList(list) {
+    const idList = [];
+    
+    for (let i = 0; i < list.length; i++) {
+      const item = list[i];
+      const id = item.id;
+      
+      idList.push(id);
+    }
+    
+    return idList;
+  }
+
   const AllInternshipCards = ({ itemsPerPage }) => {
     // implemented pagination functionality
 
-    const items = Array.from(
-      { length: internships.length },
-      (_, index) => index + 1
-    );
+    // const items = Array.from(
+    //   { length: internships.length },
+    //   (_, index) => index + 1
+    // );
+
+    const items = extractIdsFromList(internships)
 
     const [itemOffset, setItemOffset] = useState(0);
 
