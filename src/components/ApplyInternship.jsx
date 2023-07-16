@@ -21,7 +21,8 @@ const ApplyInternship = () => {
 
       myHeaders.append(
         "Authorization",
-        "Token 74153f1697d48cb9e8614bb564b7cf2e161d5aa7"
+        "Token 4c079414852f5a7d2dacc42c2091fb6a8fd3867c"
+        // student ka token
       );
 
       var requestOptions = {

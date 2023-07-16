@@ -13,11 +13,12 @@ import makeAnimated from "react-select/animated";
 import { type } from "@testing-library/user-event/dist/type";
 import { skillsOptions } from "../docs/internship_skills.ts";
 import Select from "react-select";
+import { useAsyncError, useParams , useLocation} from "react-router-dom";
 
 const validationSchema = yup.object({
   position: yup.string("ML Engineer").required("Position is required"),
-  internship_type: yup
-    .string("internship_type")
+  internship_Type: yup
+    .string("internship_Type")
     .required("Internship type is required"),
   start_date: yup
     .date()
@@ -35,11 +36,46 @@ const validationSchema = yup.object({
   skillsRequired: yup.array().required("Required Field"),
 });
 
-const PostInternshipForm = () => {
+const UpdateInternshipForm = ({id}) => {
+
+  const [internship, setInternship] = useState([]);
+
+  const getInternshipDetail = () => {
+    try {
+      var myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization",
+        "Token 4c079414852f5a7d2dacc42c2091fb6a8fd3867c"
+      );
+      myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch(
+        `https://ipbackend.pythonanywhere.com/internship-detail/${id}/`,
+        requestOptions
+      )
+        .then((response) => response.text())
+        .then((result) => setInternship(JSON.parse(result)))
+        .catch((error) => console.log("error", error));
+    } catch (err) {
+      console.log(`Error while fetching the internship for update : ${err}`);
+    }
+  };
+
+  useEffect(() => {
+    getInternshipDetail();
+    // console.log(internship.id);
+  },[]);
+
   const formik = useFormik({
     initialValues: {
       position: "",
-      internship_type: "",
+      internship_Type: "",
       positionsOpen: "",
       stipend: "",
       skillsRequired: [],
@@ -57,27 +93,26 @@ const PostInternshipForm = () => {
       var concat_values = selectedValues.join(",");
       formik.values.skillsRequired = concat_values;
       alert(JSON.stringify(values, null, 2));
-      sendData(values);
+      UpdateData(values, id);
     },
   });
 
-  const sendData = (values) => {
+  const UpdateData = (values, id) => {
     try {
       var myHeaders = new Headers();
 
       myHeaders.append(
         "Authorization",
-        "Token 74153f1697d48cb9e8614bb564b7cf2e161d5aa7"
+        "Token 4c079414852f5a7d2dacc42c2091fb6a8fd3867c"
+        // prof. ka token
       );
 
       // myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
 
-      console.log(myHeaders);
-
       var formdata = new FormData();
       formdata.append("skills", values.skillsRequired);
       formdata.append("internship_Title", values.position);
-      formdata.append("internship_Type", values.internship_type);
+      formdata.append("internship_Type", values.internship_Type);
       formdata.append("start_date", values.start_date);
       formdata.append("end_date", values.end_date);
       formdata.append("stipend", values.stipend);
@@ -94,13 +129,13 @@ const PostInternshipForm = () => {
       };
 
       fetch(
-        "https://ipbackend.pythonanywhere.com/internship-create/",
+        `https://ipbackend.pythonanywhere.com/internship-update/${id}/`,
         requestOptions
       )
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) =>
-          console.log("Error while posting internship : ", error)
+          console.log("Error while updatign internship : ", error)
         );
     } catch (err) {
       throw new Error("Invalid data");
@@ -123,9 +158,6 @@ const PostInternshipForm = () => {
 
   const responsiveness = { responsive: width < 1100 };
   const resp = responsiveness.responsive;
-
-  const responsiveness2 = { responsive: width < 850 };
-  const resp2 = responsiveness2.responsive;
 
   const PostBtn = styled(Button)({
     backgroundColor: "#85D1A0",
@@ -176,8 +208,8 @@ const PostInternshipForm = () => {
         <TextField
           id="start_date"
           type={focus_startDate ? "date" : "text"}
-          label="start Date"
           placeholder="start Date"
+          label={internship.start_date}
           onFocus={onFocusStartDate}
           name="start_date"
           value={formik.values.start_date}
@@ -198,8 +230,8 @@ const PostInternshipForm = () => {
         <TextField
           id="end_date"
           type={focus_endDate ? "date" : "text"}
-          label="End Date"
           placeholder="End Date"
+          label={internship.end_date}
           onFocus={onFocusendDate}
           // onBlur={onBlur}
           name="end_date"
@@ -221,8 +253,8 @@ const PostInternshipForm = () => {
         <TextField
           id="organization"
           type="text"
-          label="Organization"
           placeholder="Organization"
+          label={internship.organization}
           name="organization"
           value={formik.values.organization}
           onBlur={formik.handleBlur}
@@ -232,7 +264,7 @@ const PostInternshipForm = () => {
           }
           helperText={formik.touched.organization && formik.errors.organization}
           required
-          style={{margin: "0 1rem 1rem 0", width: resp ? "20ch" : "24ch" }}
+          style={{ margin: "0 1rem 1rem 0", width: resp ? "20ch" : "24ch" }}
         />
       </>
     );
@@ -244,15 +276,13 @@ const PostInternshipForm = () => {
         <TextField
           id="location"
           type="text"
-          label="Location"
           placeholder="Location"
+          label={internship.location}
           name="location"
           value={formik.values.location}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          error={
-            formik.touched.location && Boolean(formik.errors.location)
-          }
+          error={formik.touched.location && Boolean(formik.errors.location)}
           helperText={formik.touched.location && formik.errors.location}
           required
           style={{ marginBottom: "1rem", width: resp ? "20ch" : "24ch" }}
@@ -267,8 +297,8 @@ const PostInternshipForm = () => {
         <TextField
           id="position"
           type="text"
-          label="Position"
           placeholder="Position"
+          label={internship?.internship_Title}
           name="position"
           value={formik.values.position}
           onBlur={formik.handleBlur}
@@ -286,20 +316,20 @@ const PostInternshipForm = () => {
     return (
       <>
         <TextField
-          id="internship_type"
+          id="internship_Type"
           type="text"
-          label="Internship Type"
-          placeholder="Remote/Onsite"
-          name="internship_type"
-          value={formik.values.internship_type}
+          placeholder="Internship Type"
+          label={internship.internship_Type}
+          name="internship_Type"
+          value={formik.values.internship_Type}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           error={
-            formik.touched.internship_type &&
-            Boolean(formik.errors.internship_type)
+            formik.touched.internship_Type &&
+            Boolean(formik.errors.internship_Type)
           }
           helperText={
-            formik.touched.internship_type && formik.errors.internship_type
+            formik.touched.internship_Type && formik.errors.internship_Type
           }
           required
           style={{ marginBottom: "1rem", width: resp ? "42ch" : "50ch" }}
@@ -314,8 +344,8 @@ const PostInternshipForm = () => {
         <TextField
           id="positionsOpen"
           type="number"
-          label="Positions Open"
           placeholder="Positions Open"
+          label={internship.no_Of_Openings}
           name="positionsOpen"
           value={formik.values.positionsOpen}
           onBlur={formik.handleBlur}
@@ -339,8 +369,8 @@ const PostInternshipForm = () => {
         <TextField
           id="stipend"
           type="number"
-          label="Stipend"
           placeholder="Stipend"
+          label={internship.stipend}
           name="stipend"
           value={formik.values.stipend}
           onBlur={formik.handleBlur}
@@ -360,8 +390,8 @@ const PostInternshipForm = () => {
         <TextField
           id="eligibility"
           type="text"
-          label="Eligibility"
           placeholder="Eligibility"
+          label={internship.eligibility}
           name="eligibility"
           value={formik.values.eligibility}
           onBlur={formik.handleBlur}
@@ -371,7 +401,7 @@ const PostInternshipForm = () => {
           }
           helperText={formik.touched.eligibility && formik.errors.eligibility}
           required
-          style={{ marginBottom: "1rem", width: resp ? "42ch" : "50ch"}}
+          style={{ marginBottom: "1rem", width: resp ? "42ch" : "50ch" }}
         />
       </>
     );
@@ -400,17 +430,18 @@ const PostInternshipForm = () => {
           value={formik.values.selectedValues}
           styles={selectStyles}
           onChange={handleSelectChange}
-          placeholder="Required skills"
+          label={internship.skills}
         />
       </>
     );
   };
 
   return (
-    <Grid
+    <>
+          <Grid
       container
       spacing={2}
-      className="postInternship_main_container"
+      className="UpdateInternship_main_container"
       style={{
         justifyContent: "center",
         alignItems: "center",
@@ -438,7 +469,7 @@ const PostInternshipForm = () => {
               position: "relative",
             }}
           >
-            <h1 className="formHeader">Post Internship</h1>
+            <h1 className="formHeader">Update Internship</h1>
 
             {PositonField()}
 
@@ -464,7 +495,7 @@ const PostInternshipForm = () => {
             {SkillsField()}
 
             <div>
-              <PostBtn type="submit">Post Internship</PostBtn>
+              <PostBtn type="submit">Update Internship</PostBtn>
             </div>
           </Box>
         </form>
@@ -480,15 +511,20 @@ const PostInternshipForm = () => {
         />
       </Grid>
     </Grid>
+    </>
   );
 };
 
-const PostInternship = () => {
+const UpdateInternship = () => {
+  const location = useLocation();
+  const pathname = location.pathname;
+  const id = pathname.match(/\d+$/)?.[0];
+
   return (
     <React.Fragment>
-      <PostInternshipForm />
+      <UpdateInternshipForm id={id} />
     </React.Fragment>
   );
 };
 
-export default PostInternship;
+export default UpdateInternship;

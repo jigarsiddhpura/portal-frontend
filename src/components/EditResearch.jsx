@@ -4,14 +4,11 @@ import { Grid, Typography, Chip, Stack, Button } from "@mui/material";
 import ResponsiveDrawer from "../utility/ResponsiveDrawer";
 import Avatar from "@mui/material/Avatar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import ScheduleIcon from "@mui/icons-material/Schedule";
-import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-
+import { Link } from "react-router-dom";
 import gojo from "../images/gojo.png";
 import Pagination from "@mui/material/Pagination";
 
-const ApplyResearch = () => {
+const EditResearch = () => {
   // checking local Storage after each update
   var [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
@@ -22,8 +19,8 @@ const ApplyResearch = () => {
       var myHeaders = new Headers();
       myHeaders.append(
         "Authorization",
-        "Token 4c079414852f5a7d2dacc42c2091fb6a8fd3867c"
-        // above is student ka token
+        "Token f028d8d9a1884a335734170938fb9f794d2cf4e5"
+        // above is professor ka token
       );
       myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
 
@@ -36,7 +33,7 @@ const ApplyResearch = () => {
       };
 
       fetch(
-        "https://ipbackend.pythonanywhere.com/users/Research_ProjectList/",
+        "https://ipbackend.pythonanywhere.com/users/Research_ProjectLC/",
         requestOptions
       )
         .then((response) => response.text())
@@ -47,9 +44,45 @@ const ApplyResearch = () => {
     }
   };
 
+  //   useState var that when changed leads to load research papers again
+  const [triggerEffect, setTriggerEffect] = useState(false);
+
+  const DelResearch = (id, token) => {
+    try {
+      var myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization",
+        `Token f028d8d9a1884a335734170938fb9f794d2cf4e5`
+        // sme upar k prof. ka token
+      );
+      myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
+
+      var formdata = new FormData();
+
+      var requestOptions = {
+        method: "DELETE",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow",
+      };
+
+      fetch(
+        `https://ipbackend.pythonanywhere.com/users/Research_ProjectRUD/${id}/`,
+        requestOptions
+      )
+        .then((response) => response.text())
+        .then((result) => console.log(`Result after deleting rp : ${result}`))
+        .catch((error) => console.log("error", error));
+
+      setTriggerEffect((prevState) => !prevState);
+    } catch (err) {
+      console.log(`Error while deleting the research paper : ${err}`);
+    }
+  };
+
   useEffect(() => {
     getResearchPapers();
-  }, []);
+  }, [triggerEffect]);
 
   window.onstorage = () => {
     setIsDrawerOpen(JSON.parse(window.localStorage.getItem("drawerOpen")));
@@ -66,24 +99,16 @@ const ApplyResearch = () => {
     },
   });
 
-  const OpenGmailTab = (email) => {
-    console.log("clicked")
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
-    window.open(gmailUrl,'_blank') 
-  }
-
-  const ResearchCard = ({items}) => {
-
+  const ResearchCard = ({ items }) => {
     return (
       <ThemeProvider theme={theme}>
         <Grid md={12}>
-          {
-            researchPapers.map((researchp, index) => {
-              var skills = researchp.skills.split(",");
-              skills = skills.filter((element) => element !== "");
-              if(items.includes(researchp.id)){
-                return (
-                  <Grid
+          {researchPapers.map((researchp, index) => {
+            var skills = researchp.skills.split(",");
+            skills = skills.filter((element) => element !== "");
+            if (items.includes(researchp.id)) {
+              return (
+                <Grid
                   key={researchp.id}
                   container
                   elevation={2}
@@ -119,8 +144,12 @@ const ApplyResearch = () => {
                     <Typography variant="body2" gutterBottom align="left">
                       Sridhar Iyer
                     </Typography>
-                    <Stack direction="row" spacing={1} style={{ marginTop: "0.5rem" }}>
-                    {skills.map((skill) => (
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      style={{ marginTop: "0.5rem" }}
+                    >
+                      {skills.map((skill) => (
                         <Chip
                           key={skill}
                           label={skill.trim()}
@@ -129,50 +158,43 @@ const ApplyResearch = () => {
                       ))}
                     </Stack>
                   </Grid>
-                  {/* <Grid item md={3} paddingLeft={3}>
-                    <Stack direction="column" spacing={2}>
-                      <Stack direction="row" spacing={2}>
-                        <CalendarMonthIcon color="success" />{" "}
-                        <span style={{ color: "black", marginBottom: "0.3rem" }}>
-                          {" "}
-                          20hrs/week{" "}
-                        </span>
-                      </Stack>
-                      <Stack direction="row" spacing={2}>
-                        <ScheduleIcon color="success" />{" "}
-                        <span style={{ color: "black", marginBottom: "0.3rem" }}>
-                          {" "}
-                          20hrs/week{" "}
-                        </span>
-                      </Stack>
-                      <Stack direction="row" spacing={2}>
-                        <CurrencyRupeeIcon color="success" />{" "}
-                        <span style={{ color: "black", marginBottom: "0.3rem" }}>
-                          {" "}
-                          5000{" "}
-                        </span>
-                      </Stack>
-                    </Stack>
-                  </Grid> */}
                   <Grid
                     item
-                    md={4}
+                    md={2}
                     sx={{
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                     }}
                   >
-                    <Button variant="contained" color="secondary" onClick={() => OpenGmailTab(researchp.professor)}>
-                      Apply
+                    <Link to={`/updateresearch/${researchp.id}`}>
+                    <Button variant="contained" color="secondary">
+                      Edit
+                    </Button>
+                    </Link>
+                  </Grid>
+                  <Grid
+                    item
+                    md={2}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Button
+                      variant="contained"
+                      color="error"
+                      onClick={() => DelResearch(researchp.id)}
+                    >
+                      Delete
                     </Button>
                   </Grid>
                 </Grid>
-                );
-              }
-              return null;
-            })
-          }
+              );
+            }
+            return null;
+          })}
         </Grid>
       </ThemeProvider>
     );
@@ -180,26 +202,26 @@ const ApplyResearch = () => {
 
   function extractIdsFromList(list) {
     const idList = [];
-    
+
     for (let i = 0; i < list.length; i++) {
       const item = list[i];
       const id = item.id;
-      
+
       idList.push(id);
     }
-    
+
     return idList;
   }
 
-  const AllResearchCards = ({itemsPerPage}) => {
-     // implemented pagination functionality
+  const AllResearchCards = ({ itemsPerPage }) => {
+    // implemented pagination functionality
 
     //  const items = Array.from(
     //   { length: researchPapers.length },
     //   (_, index) => index + 1
     // );
 
-    const items = extractIdsFromList(researchPapers)
+    const items = extractIdsFromList(researchPapers);
 
     const [itemOffset, setItemOffset] = useState(0);
 
@@ -222,7 +244,13 @@ const ApplyResearch = () => {
     };
 
     return (
-      <div style={{ display: "flex", alignItems: "center" , flexDirection:'column'}} >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
         <ResearchCard items={currentItems} />
 
         <Stack spacing={2} style={{ display: "flex", alignItems: "center" }}>
@@ -254,4 +282,4 @@ const ApplyResearch = () => {
   );
 };
 
-export default ApplyResearch;
+export default EditResearch;
