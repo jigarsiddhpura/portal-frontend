@@ -45,7 +45,7 @@ const UpdateInternshipForm = ({id}) => {
       var myHeaders = new Headers();
       myHeaders.append(
         "Authorization",
-        "Token 4c079414852f5a7d2dacc42c2091fb6a8fd3867c"
+        "Token 19942b7733d256acebbfacfb6eeb7e5f55d58ecd"
       );
       myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
 
@@ -103,7 +103,7 @@ const UpdateInternshipForm = ({id}) => {
 
       myHeaders.append(
         "Authorization",
-        "Token 4c079414852f5a7d2dacc42c2091fb6a8fd3867c"
+        "Token 19942b7733d256acebbfacfb6eeb7e5f55d58ecd"
         // prof. ka token
       );
 

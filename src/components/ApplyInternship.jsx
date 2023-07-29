@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Grid, Typography, Chip, Stack, Button } from "@mui/material";
 import ResponsiveDrawer from "../utility/ResponsiveDrawer";
 import Avatar from "@mui/material/Avatar";
@@ -6,9 +6,11 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import AppContext from "../AppContext";
 
 import gojo from "../images/gojo.png";
 import Pagination from "@mui/material/Pagination";
+import { number } from "yup";
 
 const ApplyInternship = () => {
   // checking local Storage after each update
@@ -21,7 +23,7 @@ const ApplyInternship = () => {
 
       myHeaders.append(
         "Authorization",
-        "Token 4c079414852f5a7d2dacc42c2091fb6a8fd3867c"
+        "Token 57e32c9351107fbc6b6d171e48472567d223fa7e"
         // student ka token
       );
 
@@ -65,14 +67,47 @@ const ApplyInternship = () => {
     },
   });
 
+  const {selectedTags, setSelectedTags} = useContext(AppContext)
+  const [filteredInternships, setFilteredInternships] = useState(internships)
+
+  function isNumberInStipendRange(stipendRange,stipend){ 
+
+    // replacing comma and splitting the stipend range
+    const sanitizedStipendRange = stipendRange.replace(/,/g, '');
+    const [minStipend, maxStipend] = sanitizedStipendRange.split(' - ').map(Number);
+    const numericNumber = Number(stipend)
+    return numericNumber >= minStipend && numericNumber <= maxStipend
+  }
+
+    // Filter internships whenever selectedTags change
+    useEffect(() => {
+      console.log(selectedTags);
+      if (selectedTags.length === 0) {
+        setFilteredInternships(internships);
+      } else {
+        const filtered = internships.filter((internship) =>
+          (
+            selectedTags.some((tag) => internship.skills.split(",").includes(tag)) // filtering skills
+          ) ||
+          (
+            selectedTags.includes(internship.internship_Type) // filtering internship type
+          ) ||
+          (
+            selectedTags.some((tag) => isNumberInStipendRange(tag,internship.stipend)) // filtering stipend
+          )
+        );
+        setFilteredInternships(filtered);
+      }
+    }, [selectedTags,internships]);
+
   const InternshipCard = ({ items }) => {
     return (
       <ThemeProvider theme={theme}>
         <Grid md={12}>
-          {internships.map((internship, index) => {
+          {filteredInternships.map((internship, index) => {
             var skills = internship.skills.split(",");
             skills = skills.filter((element) => element !== "");
-            if (items.includes(internship.id)) {
+            if (items.includes(internship.id) ) {
               return (
                 <Grid
                   key={index}
@@ -208,7 +243,7 @@ const ApplyInternship = () => {
     //   (_, index) => index + 1
     // );
 
-    const items = extractIdsFromList(internships)
+    const items = extractIdsFromList(filteredInternships)
 
     const [itemOffset, setItemOffset] = useState(0);
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { useContext, useState } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -21,6 +21,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Checkbox from "@mui/material/Checkbox";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
+import AppContext from "../AppContext";
 
 var drawerWidth = 240;
 
@@ -95,7 +96,7 @@ export default function ResponsiveDrawer({ drawerHeading }) {
   });
 
   // openList is respect to lists inside drawer
-  const [openList, setOpenList] = React.useState([false, false, false, false]);
+  const [openList, setOpenList] = useState([false, false, false,false]);
 
   const handleClickList = (index) => {
     const copyList = [...openList];
@@ -103,10 +104,15 @@ export default function ResponsiveDrawer({ drawerHeading }) {
     setOpenList(copyList);
   };
 
-  const [checked, setChecked] = React.useState([[], [], [], []]);
+  const [checked, setChecked] = useState([[], [], [],[]]);
+  console.log(checked);
 
-  const handleToggle = (listIndex, value) => () => {
-    console.log(`Checkbox clicked for listIndex ${listIndex} - value ${value}`);
+  const {selectedTags, setSelectedTags} = useContext(AppContext)
+
+  const handleToggle = (listIndex, value, type) => () => {
+    console.log(`Checkbox clicked for listIndex ${listIndex} - type ${type}`);
+
+    // for toggling the checkboxes
     const currentIndex = checked[listIndex].includes(value);
     const newChecked = [...checked];
 
@@ -116,34 +122,22 @@ export default function ResponsiveDrawer({ drawerHeading }) {
       const indexToRemove = newChecked[listIndex].indexOf(value);
       newChecked[listIndex].splice(indexToRemove, 1);
     }
-
     setChecked(newChecked);
+
+    // for toggling the selectedTags
+    setSelectedTags((prevSelectedTags) =>
+      checked[listIndex].includes(value)
+        ? [...prevSelectedTags, type] // Add tag to selectedTags if checked
+        : prevSelectedTags.filter((tag) => tag !== type) // Remove tag if unchecked
+    );
+
   };
 
-  const InternshipTypes = ["Full-time", "Part-time", "Remote", "Hybrid"];
-  const Category = [
-    "Design",
-    "Web Development",
-    "App Development",
-    "Marketing",
-    "Design",
-    "Data Science",
-    "AI/ML",
-    "Robotics",
-  ];
-  // const Experience = [
-  //   "0-6 months",
-  //   "6-12 months",
-  //   "1-2 years",
-  //   "2 years or above",
-  // ];
-  const StipendRange = [
-    "0 - 1,000",
-    "1,000 - 5,000",
-    "5,000 - 10,000",
-    "10,000 - 15,000",
-    "15,000 or above",
-  ];
+
+  const InternshipTypes = ["Full-time", "Part-time", "Remote", "Hybrid","OnSite"];
+  const Category = ["Design","Web Development","App Development","Machine Learning","Artificial Intelligence","Data Science","ReactJS","MySQL"];
+  const Experience = ["0-6 months","6-12 months","1-2 years","2 years or above"];
+  const StipendRange = [  "0 - 1,000",  "1,000 - 5,000",  "5,000 - 10,000",  "10,000 - 15,000",  "15,000 - 2,00,000"];
 
   const NestedList = ({ SidebarList, listIndex, Listname }) => {
     // console.log(`list name = ${Listname}`);
@@ -183,7 +177,7 @@ export default function ResponsiveDrawer({ drawerHeading }) {
                   >
                     <ListItemButton
                       role={undefined}
-                      onClick={handleToggle(listIndex, value)}
+                      onClick={handleToggle(listIndex, value,type)}
                       dense
                     >
                       <ListItemIcon>
@@ -192,6 +186,7 @@ export default function ResponsiveDrawer({ drawerHeading }) {
                           checked={checked[listIndex].includes(value) === true}
                           tabIndex={-1}
                           disableRipple
+                          value={type}
                           inputProps={{ "aria-labelledby": labelId }}
                         />
                       </ListItemIcon>
@@ -288,13 +283,13 @@ export default function ResponsiveDrawer({ drawerHeading }) {
               Listname="Category"
             />
           }
-          {/* {
+          {
             <NestedList
               SidebarList={Experience}
               listIndex={2}
               Listname="Experience"
             />
-          } */}
+          }
           {
             <NestedList
               SidebarList={StipendRange}

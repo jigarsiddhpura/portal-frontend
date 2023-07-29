@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Grid, Typography, Chip, Stack, Button } from "@mui/material";
 import ResponsiveDrawer from "../utility/ResponsiveDrawer";
 import Avatar from "@mui/material/Avatar";
@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-
+import AppContext from "../AppContext";
 import gojo from "../images/gojo.png";
 import Pagination from "@mui/material/Pagination";
 
@@ -22,7 +22,7 @@ const ApplyResearch = () => {
       var myHeaders = new Headers();
       myHeaders.append(
         "Authorization",
-        "Token 4c079414852f5a7d2dacc42c2091fb6a8fd3867c"
+        "Token 57e32c9351107fbc6b6d171e48472567d223fa7e"
         // above is student ka token
       );
       myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
@@ -72,13 +72,34 @@ const ApplyResearch = () => {
     window.open(gmailUrl,'_blank') 
   }
 
+  const {selectedTags, setSelectedTags} = useContext(AppContext)
+  const [filteredResearchPapers, setFilteredResearchPapers] = useState(researchPapers)
+
+  // Filter researchPapers whenever selectedTags change
+  useEffect(() => {
+    console.log(selectedTags);
+    if (selectedTags.length === 0) {
+      setFilteredResearchPapers(researchPapers);
+    } else {
+      const filtered = researchPapers.filter((researchp) =>
+        (
+          selectedTags.some((tag) => 
+          (researchp.skills.split(",").includes(tag)) ||
+          (tag === researchp.topic)
+          ) // filtering skills
+        ) 
+      );
+      setFilteredResearchPapers(filtered);
+    }
+  }, [selectedTags,researchPapers]);
+
   const ResearchCard = ({items}) => {
 
     return (
       <ThemeProvider theme={theme}>
         <Grid md={12}>
           {
-            researchPapers.map((researchp, index) => {
+            filteredResearchPapers.map((researchp, index) => {
               var skills = researchp.skills.split(",");
               skills = skills.filter((element) => element !== "");
               if(items.includes(researchp.id)){
@@ -199,7 +220,7 @@ const ApplyResearch = () => {
     //   (_, index) => index + 1
     // );
 
-    const items = extractIdsFromList(researchPapers)
+    const items = extractIdsFromList(filteredResearchPapers)
 
     const [itemOffset, setItemOffset] = useState(0);
 

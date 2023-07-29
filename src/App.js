@@ -20,11 +20,13 @@ import PostRp from './components/PostRp'
 import EditInternship from './components/EditInternship';
 import UpdateInternship from './components/UpdateInternship';
 import UpdateResearch from './components/UpdateResearch';
+import {AppProvider} from './AppContext'
 
 function App() {
   return (
+    <AppProvider>
     <div className="App">
-        <Router>
+    <Router>
         <Routes>
           <Route path="/" element={<LandingPage/>}>
           </Route>
@@ -65,6 +67,7 @@ function App() {
       
     </Router>
     </div>
+    </AppProvider>
   );
 }
 

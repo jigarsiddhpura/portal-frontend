@@ -67,7 +67,7 @@ const PostInternshipForm = () => {
 
       myHeaders.append(
         "Authorization",
-        "Token 74153f1697d48cb9e8614bb564b7cf2e161d5aa7"
+        "Token 19942b7733d256acebbfacfb6eeb7e5f55d58ecd"
       );
 
       // myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
