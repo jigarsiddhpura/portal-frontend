@@ -105,12 +105,12 @@ export default function ResponsiveDrawer({ drawerHeading }) {
   };
 
   const [checked, setChecked] = useState([[], [], [],[]]);
-  console.log(checked);
+  // console.log(checked);
 
   const {selectedTags, setSelectedTags} = useContext(AppContext)
 
   const handleToggle = (listIndex, value, type) => () => {
-    console.log(`Checkbox clicked for listIndex ${listIndex} - type ${type}`);
+    // console.log(`Checkbox clicked for listIndex ${listIndex} - type ${type}`);
 
     // for toggling the checkboxes
     const currentIndex = checked[listIndex].includes(value);
@@ -125,17 +125,35 @@ export default function ResponsiveDrawer({ drawerHeading }) {
     setChecked(newChecked);
 
     // for toggling the selectedTags
-    setSelectedTags((prevSelectedTags) =>
-      checked[listIndex].includes(value)
-        ? [...prevSelectedTags, type] // Add tag to selectedTags if checked
-        : prevSelectedTags.filter((tag) => tag !== type) // Remove tag if unchecked
-    );
+    console.log(listIndex);
+    if(listIndex===0){
+      setSelectedTags((prevSelectedTags) =>
+        checked[listIndex].includes(value)
+          ? {...prevSelectedTags, internship_Type:[...selectedTags.internship_Type,type]} // Add tag to selectedTags if checked
+          : {...prevSelectedTags, internship_Type:prevSelectedTags.internship_Type?.filter((tag) => tag !== type)} // Remove tag if unchecked
+      );
+    }
+    else if(listIndex===1){
+      setSelectedTags((prevSelectedTags) =>
+        checked[listIndex].includes(value)
+          ? {...prevSelectedTags, internship_Title:[...selectedTags.internship_Title,type]} // Add tag to selectedTags if checked
+          : {...prevSelectedTags, internship_Title:prevSelectedTags.internship_Title?.filter((tag) => tag !== type)}  // Remove tag if unchecked
+      );
+    }
+    else if(listIndex===2){
+      setSelectedTags((prevSelectedTags) =>
+        checked[listIndex].includes(value)
+          ? {...prevSelectedTags, stipend:[...selectedTags.stipend,type]} // Add tag to selectedTags if checked
+          : {...prevSelectedTags, stipend:prevSelectedTags.stipend?.filter((tag) => tag !== type)}  // Remove tag if unchecked
+      );
+    }
+    console.log(selectedTags);
 
   };
 
 
   const InternshipTypes = ["Full-time", "Part-time", "Remote", "Hybrid","OnSite"];
-  const Category = ["Design","Web Development","App Development","Machine Learning","Artificial Intelligence","Data Science","ReactJS","MySQL"];
+  const Category = ["Design","Web Development","App Development","Machine Learning","Artificial Intelligence","Data Science","ReactJS","MySQL","Automobile Engg"];
   const Experience = ["0-6 months","6-12 months","1-2 years","2 years or above"];
   const StipendRange = [  "0 - 1,000",  "1,000 - 5,000",  "5,000 - 10,000",  "10,000 - 15,000",  "15,000 - 2,00,000"];
 
@@ -285,16 +303,16 @@ export default function ResponsiveDrawer({ drawerHeading }) {
           }
           {
             <NestedList
-              SidebarList={Experience}
-              listIndex={2}
-              Listname="Experience"
+            SidebarList={StipendRange}
+            listIndex={2}
+            Listname="Stipend Range"
             />
           }
           {
             <NestedList
-              SidebarList={StipendRange}
+              SidebarList={Experience}
               listIndex={3}
-              Listname="Stipend Range"
+              Listname="Experience"
             />
           }
         </Drawer>

@@ -12,7 +12,28 @@ import gojo from "../images/gojo.png";
 import Pagination from "@mui/material/Pagination";
 
 const ApplyResearch = () => {
-  // checking local Storage after each update
+
+  // adding event listener for responsiveness
+  const [width, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
+  const updateDimensions = () => {
+    const width = window.innerWidth;
+    setWindowWidth(width);
+  };
+
+  const responsiveness = { responsive: width < 1100 };
+  const resp = responsiveness.responsive; //sm
+
+  const responsiveness2 = { responsive: width < 840 };
+  const resp2 = responsiveness2.responsive; //xs
+
+
   var [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
   const [researchPapers, setResearchPapers] = useState([]);
@@ -51,6 +72,7 @@ const ApplyResearch = () => {
     getResearchPapers();
   }, []);
 
+  // checking local Storage after each update
   window.onstorage = () => {
     setIsDrawerOpen(JSON.parse(window.localStorage.getItem("drawerOpen")));
   };
@@ -78,16 +100,13 @@ const ApplyResearch = () => {
   // Filter researchPapers whenever selectedTags change
   useEffect(() => {
     console.log(selectedTags);
-    if (selectedTags.length === 0) {
+    if (Object.values(selectedTags).every((list) => list.length === 0)) {
       setFilteredResearchPapers(researchPapers);
     } else {
       const filtered = researchPapers.filter((researchp) =>
         (
-          selectedTags.some((tag) => 
-          (researchp.skills.split(",").includes(tag)) ||
-          (tag === researchp.topic)
-          ) // filtering skills
-        ) 
+          selectedTags.internship_Title.includes(researchp.topic)
+        ) // filtering position
       );
       setFilteredResearchPapers(filtered);
     }
@@ -111,15 +130,17 @@ const ApplyResearch = () => {
                   style={{
                     border: "1px solid gray",
                     borderRadius: "5px",
-                    width: "45rem",
+                    width: resp2 ? "30rem" : "45rem",
                     padding: "1rem",
                     margin: "2rem 0 0 5rem",
+                    position:resp2 ? "relative" : "",
+                    left:'3rem'
                   }}
                 >
                   <Grid
                     item
-                    xs={12}
-                    sm={3}
+                    xs={6}
+                    sm={4}
                     md={3}
                     sx={{
                       display: "flex",
@@ -133,7 +154,7 @@ const ApplyResearch = () => {
                       sx={{ width: 56, height: 56 }}
                     />
                   </Grid>
-                  <Grid item md={5}>
+                  <Grid item xs={6} sm={4} md={5}>
                     <Typography variant="h5" gutterBottom align="left">
                       {researchp.topic}
                     </Typography>
@@ -150,41 +171,17 @@ const ApplyResearch = () => {
                       ))}
                     </Stack>
                   </Grid>
-                  {/* <Grid item md={3} paddingLeft={3}>
-                    <Stack direction="column" spacing={2}>
-                      <Stack direction="row" spacing={2}>
-                        <CalendarMonthIcon color="success" />{" "}
-                        <span style={{ color: "black", marginBottom: "0.3rem" }}>
-                          {" "}
-                          20hrs/week{" "}
-                        </span>
-                      </Stack>
-                      <Stack direction="row" spacing={2}>
-                        <ScheduleIcon color="success" />{" "}
-                        <span style={{ color: "black", marginBottom: "0.3rem" }}>
-                          {" "}
-                          20hrs/week{" "}
-                        </span>
-                      </Stack>
-                      <Stack direction="row" spacing={2}>
-                        <CurrencyRupeeIcon color="success" />{" "}
-                        <span style={{ color: "black", marginBottom: "0.3rem" }}>
-                          {" "}
-                          5000{" "}
-                        </span>
-                      </Stack>
-                    </Stack>
-                  </Grid> */}
                   <Grid
-                    item
-                    md={4}
+                    item xs={12} sm={4} md={4}
                     sx={{
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                     }}
                   >
-                    <Button variant="contained" color="secondary" onClick={() => OpenGmailTab(researchp.professor)}>
+                    <Button variant="contained" color="secondary" onClick={() => OpenGmailTab(researchp.professor)}
+                    style={{marginTop:resp?'2rem':'0rem'}}
+                    >
                       Apply
                     </Button>
                   </Grid>
